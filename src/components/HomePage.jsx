@@ -1,8 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimatedBackground from './AnimatedBackground';
 import CursorParticles from './CursorParticles';
+import ProfileSection from './ProfileSection';
+
 
 const HomePage = () => {
+    const [text, setText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [loopNum, setLoopNum] = useState(0);
+    const [typingSpeed, setTypingSpeed] = useState(150);
+
+    const roles = ["Software Engineer", "Full Stack Developer", "Web Developer", "UI/UX Designer"];
+
+    useEffect(() => {
+        const handleTyping = () => {
+            const i = loopNum % roles.length;
+            const fullText = roles[i];
+
+            setText(isDeleting
+                ? fullText.substring(0, text.length - 1)
+                : fullText.substring(0, text.length + 1)
+            );
+
+            setTypingSpeed(isDeleting ? 60 : 200); // Slower typing (200ms) and slower delete (60ms)
+
+            if (!isDeleting && text === fullText) {
+                setTimeout(() => setIsDeleting(true), 2000); // Pause at end
+            } else if (isDeleting && text === '') {
+                setIsDeleting(false);
+                setLoopNum(loopNum + 1);
+                setTypingSpeed(500); // Pause before new word
+            }
+        };
+
+        const timer = setTimeout(handleTyping, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [text, isDeleting, loopNum, typingSpeed, roles]);
+
     return (
         <div className="min-h-screen bg-transparent text-white selection:bg-cyan-500/30 selection:text-white relative font-sans overflow-x-hidden">
             <CursorParticles />
@@ -40,8 +74,10 @@ const HomePage = () => {
                     </h1>
 
                     {/* Subtitle */}
-                    <h2 className="text-2xl md:text-[2.5rem] text-white/90 font-medium tracking-tight mt-4">
-                        Software Developer & Web Developer
+                    {/* Subtitle with Typewriter Effect */}
+                    <h2 className="text-2xl md:text-[2.5rem] text-white/90 font-medium tracking-tight mt-4 h-[50px]">
+                        I am a <span className="text-cyan-400">{text}</span>
+                        <span className="w-1 h-8 md:h-12 bg-white ml-2 inline-block animate-pulse align-middle" />
                     </h2>
 
                     {/* Buttons */}
@@ -76,6 +112,10 @@ const HomePage = () => {
                     <span className="text-[10px] uppercase tracking-[0.5em] text-white font-bold opacity-80 group-hover:opacity-100 transition-opacity">Scroll</span>
                 </div>
             </section>
+
+            {/* New Sections */}
+            <ProfileSection />
+
         </div>
     );
 };

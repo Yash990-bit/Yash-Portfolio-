@@ -28,18 +28,18 @@ const CursorParticles = () => {
         };
         window.addEventListener('mousemove', onMouseMove);
 
-        // Site Theme Colors: Cyan, Purple, White
-        const themeColors = ['#22d3ee', '#a855f7', '#ffffff'];
+        // SINGLE Cyan color to match the site perfectly
+        const particleColor = '#22d3ee';
 
         // Particle Class/Object logic
         const createParticle = (x, y) => {
             particles.current.push({
                 x,
                 y,
-                size: Math.random() * 3 + 1, // Slightly smaller range 1-4px
-                color: themeColors[Math.floor(Math.random() * themeColors.length)], // Random theme color
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 3 + 1, // Size range 1-4px
+                color: particleColor, // Single theme color
+                speedX: (Math.random() - 0.5) * 0.3, // Slower drift
+                speedY: (Math.random() - 0.5) * 0.3,
                 life: 1.0
             });
         };
@@ -50,7 +50,7 @@ const CursorParticles = () => {
 
             // Update and draw particles
             particles.current.forEach((p, index) => {
-                p.life -= 0.02; // Fade out speed
+                p.life -= 0.015; // Slower fade out
                 p.x += p.speedX;
                 p.y += p.speedY;
 

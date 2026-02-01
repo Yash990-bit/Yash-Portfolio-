@@ -22,7 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Glassmorphism utility */
 .glass {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
@@ -34,7 +33,6 @@ body {
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
-/* 3D Cube Styles */
 .cube-container {
   width: 200px;
   height: 200px;
@@ -83,7 +81,6 @@ body {
 }
 
 
-/* 3D Pyramid Styles (Sized to match Cube 200px) */
 .pyramid-container {
   width: 200px;
   height: 200px;
@@ -105,7 +102,6 @@ body {
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
   border-bottom: 170px solid rgba(255, 0, 255, 0.1);
-  /* Magenta glow */
   transform-origin: 50% 100%;
 }
 
@@ -147,7 +143,7 @@ body {
   border-bottom: none;
 }
 
-/* 3D Octahedron Styles */
+
 .octahedron-container {
   width: 150px;
   height: 150px;
@@ -200,7 +196,7 @@ body {
   transform: rotate(180deg) translateY(-130px);
 }
 
-/* Top Half */
+
 .oct-f1 {
   transform: rotateY(0deg) translateZ(0) rotateX(30deg);
 }
@@ -243,7 +239,6 @@ body {
   top: 100%;
 }
 
-/* 3D Cuboid Styles (Rectangular Box) */
 .cuboid-container {
   width: 120px;
   height: 200px;
@@ -261,9 +256,8 @@ body {
 .cuboid-face {
   position: absolute;
   border: 2px solid rgba(255, 165, 0, 0.5);
-  /* Orange border */
   background: rgba(255, 165, 0, 0.1);
-  /* Orange glow */
+
   box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
 }
 
@@ -409,4 +403,84 @@ body {
 
 .animate-scroll-dot {
   animation: scroll-dot 2s infinite ease-in-out;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+.animate-counter-spin {
+  animation: counter-spin 30s linear infinite;
+}
+
+@keyframes glow-cycle {
+
+  0%,
+  100% {
+    background: linear-gradient(135deg, #22d3ee, #06b6d4);
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.4), 0 0 60px rgba(34, 211, 238, 0.2);
+  }
+
+  50% {
+    background: linear-gradient(135deg, #06b6d4, #22d3ee);
+    box-shadow: 0 0 50px rgba(34, 211, 238, 0.6), 0 0 100px rgba(34, 211, 238, 0.3);
+  }
+}
+
+.animate-glow-cycle {
+  animation: glow-cycle 3s ease-in-out infinite;
+}
+
+/* Evaporating Particles Effect */
+@keyframes evaporate {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(70px) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(130px) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-evaporate {
+  animation: evaporate 3s ease-out infinite;
+}
+
+/* Ripple Effect - Single Circle Expanding Outward */
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 2s ease-out infinite;
 }
