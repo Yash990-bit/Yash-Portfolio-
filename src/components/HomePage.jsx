@@ -3,6 +3,7 @@ import AnimatedBackground from './AnimatedBackground';
 import CursorParticles from './CursorParticles';
 import ProfileSection from './ProfileSection';
 import SkillsPlayground from './SkillsPlayground';
+import ProjectsSection from './ProjectsSection';
 
 
 const HomePage = () => {
@@ -117,6 +118,7 @@ const HomePage = () => {
             {/* New Sections */}
             <ProfileSection />
             <SkillsPlayground />
+            <ProjectsSection />
 
         </div>
     );

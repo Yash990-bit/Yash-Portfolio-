@@ -9,7 +9,7 @@ import {
 
 const skills = [
     { name: 'React', icon: SiReact, color: '#61DAFB' },
-    { name: 'Tailwind', icon: SiTailwindcss, color: '#3178C6' }, // Approximate blue
+    { name: 'Tailwind', icon: SiTailwindcss, color: '#3178C6' }, 
     { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
     { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
     { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF' },
@@ -163,7 +163,7 @@ const SkillsPlayground = () => {
                 context.fill();
 
 
-                context.fillStyle = skillData.name === 'Next.js' ? '#000' : '#FFF'; // Simple contrast fix
+                context.fillStyle = skillData.name === 'Next.js' ? '#000' : '#FFF'; 
                 context.font = 'bold 20px "Inter", sans-serif';
                 context.textAlign = 'center';
                 context.textBaseline = 'middle';
@@ -201,17 +201,12 @@ const SkillsPlayground = () => {
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
                     Skills <span className="text-cyan-400">Playground</span>
                 </h2>
-                <p className="text-white/60 text-lg">
-                    Drag, throw, and watch them bounce. Nothing escapes!
-                </p>
             </div>
 
             <div
                 ref={sceneRef}
                 className="w-full h-[600px] border-t border-b border-white/5 bg-[#050505] relative cursor-default"
             >
-                <div className="absolute top-4 left-4 text-white/20 text-xs uppercase tracking-widest pointer-events-none">
-                </div>
             </div>
         </section>
     );
