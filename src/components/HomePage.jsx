@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AnimatedBackground from './AnimatedBackground';
 import CursorParticles from './CursorParticles';
 import ProfileSection from './ProfileSection';
+import SkillsPlayground from './SkillsPlayground';
 
 
 const HomePage = () => {
@@ -115,6 +116,7 @@ const HomePage = () => {
 
             {/* New Sections */}
             <ProfileSection />
+            <SkillsPlayground />
 
         </div>
     );
