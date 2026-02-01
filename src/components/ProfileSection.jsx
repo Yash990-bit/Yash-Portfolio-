@@ -1,120 +1,152 @@
 import React, { useState } from 'react';
+import yashImage from '../assets/yash.png'
+import {
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiPython,
+  SiExpress,
+  SiMongodb,
+  SiJavascript,
+  SiHtml5,
+  SiCss3
+} from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 
 const ProfileSection = () => {
     const [activeTab, setActiveTab] = useState('education');
 
-    // Tech skills orbiting around avatar - using proper icons
     const skills = [
-        { icon: '⚛️', name: 'React', color: '#61DAFB', position: { top: '5%', left: '50%' } },
-        { icon: '🎯', name: 'TypeScript', color: '#3178C6', position: { top: '15%', left: '80%' } },
-        { icon: '🔷', name: 'Tailwind', color: '#06B6D4', position: { top: '45%', left: '90%' } },
-        { icon: '🟢', name: 'Node.js', color: '#339933', position: { top: '75%', left: '80%' } },
-        { icon: '🐍', name: 'Python', color: '#3776AB', position: { top: '85%', left: '50%' } },
-        { icon: '🔥', name: 'Firebase', color: '#FFCA28', position: { top: '75%', left: '20%' } },
-        { icon: '🎨', name: 'Figma', color: '#F24E1E', position: { top: '45%', left: '10%' } },
-        { icon: '📦', name: 'Docker', color: '#2496ED', position: { top: '15%', left: '20%' } },
+    { icon: SiReact, name: 'React', color: '#61DAFB', position: { top: '5%', left: '50%' } },
+    { icon: SiTypescript, name: 'TypeScript', color: '#3178C6', position: { top: '15%', left: '80%' } },
+    { icon: SiTailwindcss, name: 'Tailwind CSS', color: '#06B6D4', position: { top: '45%', left: '90%' } },
+    { icon: SiNodedotjs, name: 'Node.js', color: '#339933', position: { top: '75%', left: '80%' } },
+    { icon: SiExpress, name: 'Express.js', color: '#ffffff', position: { top: '85%', left: '65%' } },
+    { icon: SiMongodb, name: 'MongoDB', color: '#47A248', position: { top: '85%', left: '35%' } },
+    { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E', position: { top: '75%', left: '20%' } },
+    { icon: SiPython, name: 'Python', color: '#3776AB', position: { top: '45%', left: '10%' } },
+    { icon: SiHtml5, name: 'HTML5', color: '#E34F26', position: { top: '25%', left: '10%' } },
+    { icon: SiCss3, name: 'CSS3', color: '#1572B6', position: { top: '25%', left: '90%' } },
     ];
 
-    // LeetCode Stats
+
+
     const leetCodeStats = {
-        rank: 1000,
-        globalRank: 12000,
-        badges: 41,
-        reputation: 386,
-        easy: { solved: 300, total: 1000, percent: 84 },
-        medium: { solved: 350, total: 1000, percent: 92 },
-        hard: { solved: 250, total: 1000, percent: 87 },
+        rank: 841127,
+        globalRank: 342845,
+        badges: 1,
+        reputation: 277,
+        easy: { solved: 112, total: 924, percent: 91 },
+        medium: { solved:62, total:2001, percent: 77 },
+        hard: { solved: 1, total: 905, percent:0 },
     };
 
-    // GitHub Stats
+
     const githubStats = {
-        grade: 'B-',
-        stars: 18,
-        commits: 332,
-        prs: 22,
-        issues: 45,
-        contributions: 22,
+        grade: 'C-',
+        stars: 0,
+        commits: 109,
+        issues: 13,
+        prs:2,
+        contributions: 160,
         languages: [
-            { name: 'Python', percent: 56.48, color: '#3572A5' },
-            { name: 'HTML', percent: 1.68, color: '#E34C26' },
-            { name: 'Jupyter Notebook', percent: 30.51, color: '#DA5B0B' },
-            { name: 'JavaScript', percent: 1.6, color: '#F1E05A' },
+            { name: 'JavaScript', percent: 64.35, color: '#F1E05A' },
+            { name: 'HTML', percent: 11.72, color: '#E34C26' },
+            { name: 'CSS', percent: 23.93, color: '#DA5B0B' },
         ],
     };
 
-    // Education Data
+
     const education = [
-        { years: '2015-2019', title: 'B.Tech, Computer Science', institution: 'Govt. Engineering College, Wayanad', grade: 'Secured 7.37 CGPA' },
-        { years: '2013-2015', title: 'Higher Secondary', institution: 'Your Higher Secondary School', grade: 'Secured 9.1 CGPA' },
+        { years: '2024-2028', title: 'B.Tech, Computer Science AI', institution: 'Rishihood University – Newton School of Technology'},
+        { years: '2022-2023', title: 'Higher Secondary', institution: 'DD - Model School' },
+        {years:'2020-2021' , title: 'Secondary School', institution: 'Sunbeam School'}
     ];
 
     const achievements = [
-        { years: '2023', title: 'Hackathon Winner', institution: 'National Coding Competition', grade: '1st Place' },
-        { years: '2022', title: 'Open Source Contributor', institution: 'Major OSS Project', grade: '50+ Contributions' },
-    ];
+        { years: '2025', title: 'Open Source Contributor', institution: 'Hactober Fest' },
+    ]
 
     const currentData = activeTab === 'education' ? education : achievements;
 
     return (
         <section id="about" className="min-h-screen py-20 px-4 relative z-10 bg-black">
             <div className="max-w-7xl mx-auto">
-                {/* Main Grid: Avatar Left, Stats Right */}
+
                 <div className="grid lg:grid-cols-2 gap-8 mb-12">
 
-                    {/* LEFT: Avatar with Orbiting Icons */}
                     <div className="flex items-center justify-center">
                         <div className="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center">
-                            {/* Orbiting dashed circles */}
+         
                             <div className="absolute inset-[15%] rounded-full border border-dashed border-white/10"></div>
                             <div className="absolute inset-[5%] rounded-full border border-dashed border-white/10"></div>
 
-                            {/* Tech Icons - ORBITING CONTAINER */}
-                            <div className="absolute inset-0 animate-spin-slow">
-                                {skills.map((skill) => (
-                                    <div
-                                        key={skill.name}
-                                        className="absolute w-11 h-11 rounded-full flex items-center justify-center text-xl
-                                                   bg-[#1a1a1e] border border-white/10 shadow-lg
-                                                   hover:scale-110 transition-transform cursor-pointer animate-counter-spin"
-                                        style={{
-                                            top: skill.position.top,
-                                            left: skill.position.left,
-                                            // Transform is handled by keyframes for counter-spin but we need initial placement
-                                            transform: 'translate(-50%, -50%)',
-                                            boxShadow: `0 0 15px ${skill.color}30`,
-                                        }}
-                                        title={skill.name}
-                                    >
-                                        {skill.icon}
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="absolute inset-0 animate-spin-slow">
+                        {skills.map((skill, index) => {
+                        const Icon = skill.icon;
 
-                            {/* Center Avatar - CYAN RING with RIPPLE */}
-                            <div className="relative">
-                                {/* Evaporating Ring - expands outward */}
-                                <div className="absolute top-1/2 left-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full border-2 border-cyan-400 animate-ripple" style={{ transform: 'translate(-50%, -50%)' }}></div>
+                        const total = skills.length;
+                        const angle = (index / total) * 2 * Math.PI;
+                        const radius = 160; 
 
-                                {/* Avatar Ring */}
+                        const x = 50 + (radius * Math.cos(angle)) / 4;
+                        const y = 50 + (radius * Math.sin(angle)) / 4;
+
+                        return (
+                        <div
+                            key={skill.name}
+                            className="absolute w-11 h-11 rounded-full flex items-center justify-center
+                                    bg-[#1a1a1e] border border-white/10 shadow-lg
+                                    hover:scale-110 transition-transform cursor-pointer
+                                    animate-counter-spin"
+                            style={{
+                            top: `${y}%`,
+                            left: `${x}%`,
+                            transform: 'translate(-50%, -50%)',
+                            boxShadow: `0 0 15px ${skill.color}40`,
+                            }}
+                            title={skill.name}
+                        >
+                            <Icon size={22} color={skill.color} />
+                        </div>
+                        );
+                    })}
+                    </div>
+
+    
+                        <div className="relative">
+                                <div
+                                    className="absolute top-1/2 left-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full border-2 border-cyan-400 animate-ripple"
+                                    style={{ transform: 'translate(-50%, -50%)' }}
+                                ></div>
+
                                 <div className="relative w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-gradient-to-br from-cyan-400 to-cyan-500 p-[3px]">
-                                    <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
-                                        <span className="text-7xl">👨‍💻</span>
+
+                                <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
+                                    <img
+                                     src={yashImage}  
+                                     alt="My Profile"
+                                     className="w-[105%] h-[105%] object-cover"
+                                    />
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
-                    {/* RIGHT: LeetCode + GitHub Cards */}
                     <div className="space-y-6">
-                        {/* LeetCode Card */}
+    
                         <div className="bg-[#111113] rounded-2xl p-6 border border-white/5">
                             <div className="flex items-center gap-3 mb-5">
+                                <a href="https://leetcode.com/u/yash_ragh_08/" target="_blank" rel="noopener noreferrer">
                                 <span className="text-xl">💻</span>
+                                </a>
                                 <h4 className="text-xl font-bold text-orange-400">LeetCode</h4>
                             </div>
 
-                            {/* Stats Row */}
+
                             <div className="grid grid-cols-4 gap-3 mb-6">
                                 <div className="text-center p-3 rounded-lg border border-cyan-500/30">
                                     <div className="text-2xl font-bold text-cyan-400">{leetCodeStats.rank}</div>
@@ -170,7 +202,9 @@ const ProfileSection = () => {
                         <div className="bg-[#111113] rounded-2xl p-6 border border-white/5">
                             <div className="flex items-center justify-between mb-5">
                                 <div className="flex items-center gap-3">
-                                    <span className="text-xl">🐙</span>
+                                    <a href="https://github.com/Yash990-bit" target="_blank" rel="noopener noreferrer">
+                                    <SiGithub className="text-xl text-white" />
+                                    </a>
                                     <h4 className="text-xl font-bold">Github</h4>
                                 </div>
                                 <div className="w-12 h-12 rounded-full border-[3px] border-purple-500 flex items-center justify-center">
@@ -192,7 +226,7 @@ const ProfileSection = () => {
                                     <span className="font-semibold">{githubStats.prs}</span>
                                 </div>
                                 <div className="flex justify-between py-1.5 border-b border-white/5">
-                                    <span className="text-white/50">🐛 Total Issues:</span>
+                                    <span className="text-white/50">Total Issues:</span>
                                     <span className="font-semibold">{githubStats.issues}</span>
                                 </div>
                                 <div className="flex justify-between py-1.5">
@@ -214,7 +248,6 @@ const ProfileSection = () => {
                     </div>
                 </div>
 
-                {/* BOTTOM: Education Timeline Card */}
                 <div className="max-w-xl">
                     <div className="bg-[#111113] rounded-2xl p-6 border border-white/5">
                         {/* Tabs */}
@@ -235,11 +268,11 @@ const ProfileSection = () => {
                             </button>
                         </div>
 
-                        {/* Timeline Items */}
+            
                         <div className="space-y-6">
                             {currentData.map((item, index) => (
                                 <div key={index} className="relative flex gap-4 items-start">
-                                    {/* Timeline dot and line */}
+                          
                                     <div className="flex flex-col items-center">
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0
                                             ${activeTab === 'education'
@@ -252,7 +285,6 @@ const ProfileSection = () => {
                                         )}
                                     </div>
 
-                                    {/* Content */}
                                     <div className="pt-1">
                                         <div className="flex items-center gap-3 mb-1">
                                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold

@@ -12,7 +12,7 @@ const HomePage = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [typingSpeed, setTypingSpeed] = useState(150);
 
-    const roles = ["Software Engineer", "Full Stack Developer", "Web Developer", "UI/UX Designer"];
+    const roles = ["Full Stack Developer", "Web Developer", "AI-ML Enthusiast"];
 
     useEffect(() => {
         const handleTyping = () => {
@@ -24,14 +24,14 @@ const HomePage = () => {
                 : fullText.substring(0, text.length + 1)
             );
 
-            setTypingSpeed(isDeleting ? 60 : 200); // Slower typing (200ms) and slower delete (60ms)
+            setTypingSpeed(isDeleting ? 60 : 200); 
 
             if (!isDeleting && text === fullText) {
-                setTimeout(() => setIsDeleting(true), 2000); // Pause at end
+                setTimeout(() => setIsDeleting(true), 2000); 
             } else if (isDeleting && text === '') {
                 setIsDeleting(false);
                 setLoopNum(loopNum + 1);
-                setTypingSpeed(500); // Pause before new word
+                setTypingSpeed(500); 
             }
         };
 
@@ -44,8 +44,7 @@ const HomePage = () => {
             <CursorParticles />
             <AnimatedBackground />
 
-            {/* Full-width Dark Glass Navbar - No Border */}
-            <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-black/40 backdrop-blur-md">
+            <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-transparent backdrop-blur-md">
                 <div className="text-xl font-bold tracking-tight">
                     <span className="text-cyan-400">Yash</span>{' '}
                     <span className="text-purple-500">Raghubanshi</span>
@@ -54,7 +53,6 @@ const HomePage = () => {
                 <div className="hidden md:flex space-x-12 text-[12px] font-semibold text-white/60 uppercase tracking-widest">
                     <a href="#about" className="hover:text-white transition-colors">About</a>
                     <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-                    <a href="#experience" className="hover:text-white transition-colors">Experience</a>
                     <a href="#skills" className="hover:text-white transition-colors">Skills</a>
                     <a href="#contact" className="hover:text-white transition-colors">Contact</a>
                 </div>
@@ -67,22 +65,17 @@ const HomePage = () => {
                 </button>
             </nav>
 
-            {/* Hero Section */}
             <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 z-10 pt-16">
                 <div className="relative">
-                    {/* Main Title */}
                     <h1 className="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.8] mb-8">
                         Yash Raghubanshi
                     </h1>
-
-                    {/* Subtitle */}
-                    {/* Subtitle with Typewriter Effect */}
                     <h2 className="text-2xl md:text-[2.5rem] text-white/90 font-medium tracking-tight mt-4 h-[50px]">
                         I am a <span className="text-cyan-400">{text}</span>
                         <span className="w-1 h-8 md:h-12 bg-white ml-2 inline-block animate-pulse align-middle" />
                     </h2>
 
-                    {/* Buttons */}
+
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-16">
                         <button className="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-cyan-400 transition-all text-sm uppercase tracking-wider shadow-[0_10px_40px_rgba(255,255,255,0.1)]">
                             Contact Me
@@ -92,7 +85,7 @@ const HomePage = () => {
                         </button>
                     </div>
 
-                    {/* Social Icons */}
+
                     <div className="flex items-center justify-center gap-12 mt-16">
                         <a href="#" className="text-white/40 hover:text-cyan-400 transition-all hover:scale-125">
                             <i className="fab fa-github text-2xl"></i>
@@ -106,7 +99,6 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                {/* Scroll Indicator */}
                 <div className="absolute bottom-12 flex flex-col items-center gap-3 opacity-60 group cursor-pointer">
                     <div className="w-[24px] h-[40px] border-2 border-white/30 rounded-full flex justify-center p-1.5 backdrop-blur-sm">
                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-scroll-dot" />
@@ -115,7 +107,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* New Sections */}
             <ProfileSection />
             <SkillsPlayground />
             <ProjectsSection />
