@@ -1,18 +1,18 @@
 import React from 'react';
+import leetcodeLogo from '../assets/leetcode_logo.png';
+import githubLogo from '../assets/github_logo.svg';
 
 const StatsSection = () => {
-    // LeetCode Stats (you can replace with real data later)
     const leetCodeStats = {
-        rank: 1000,
-        globalRank: 12000,
-        badges: 41,
-        reputation: 386,
-        easy: { solved: 300, total: 1000, percent: 84 },
-        medium: { solved: 350, total: 1000, percent: 92 },
-        hard: { solved: 250, total: 1000, percent: 87 },
+        rank: 840369,
+        globalRank: 342845,
+        badges: 1,
+        reputation: 277,
+        easy: { solved: 112, total: 1000, percent: 91 },
+        medium: { solved: 62, total: 2000, percent: 77 },
+        hard: { solved: 1, total: 905, percent: 0 },
     };
 
-    // GitHub Stats
     const githubStats = {
         grade: 'B+',
         stars: 18,
@@ -21,10 +21,9 @@ const StatsSection = () => {
         issues: 45,
         contributions: 22,
         languages: [
-            { name: 'Python', percent: 56.48, color: '#3572A5' },
-            { name: 'HTML', percent: 1.68, color: '#E34C26' },
-            { name: 'Jupyter Notebook', percent: 30.51, color: '#DA5B0B' },
-            { name: 'JavaScript', percent: 1.6, color: '#F1E05A' },
+            { name: 'JavaScript', percent: 64.3, color: '#3572A5' },
+            { name: 'HTML', percent: 11.72, color: '#E34C26' },
+            { name: 'CSS', percent: 23.93, color: '#F1E05A' },
         ],
     };
 
@@ -40,107 +39,60 @@ const StatsSection = () => {
 
                 <div className="grid md:grid-cols-2 gap-8">
 
-                    {/* LeetCode Card */}
+                    {/* LeetCode */}
                     <div className="glass rounded-2xl p-6 md:p-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <span className="text-2xl">💻</span>
+                        <a
+                            href="https://leetcode.com/u/yashraghubanshi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity w-fit"
+                        >
+                            <img src={leetcodeLogo} alt="LeetCode" className="w-10 h-10" />
                             <h4 className="text-2xl font-bold text-orange-400">LeetCode</h4>
-                        </div>
+                        </a>
 
-                        {/* Stats Row */}
                         <div className="grid grid-cols-4 gap-4 mb-8">
-                            <div className="text-center p-3 bg-white/5 rounded-lg">
-                                <div className="text-2xl font-bold text-cyan-400">{leetCodeStats.rank}</div>
-                                <div className="text-xs text-white/50 uppercase">Rank</div>
-                            </div>
-                            <div className="text-center p-3 bg-white/5 rounded-lg">
-                                <div className="text-lg font-bold text-white/80">{leetCodeStats.globalRank.toLocaleString()}</div>
-                                <div className="text-xs text-white/50 uppercase">Global</div>
-                            </div>
-                            <div className="text-center p-3 bg-white/5 rounded-lg">
-                                <div className="text-lg font-bold text-white/80">{leetCodeStats.badges}</div>
-                                <div className="text-xs text-white/50 uppercase">Badges</div>
-                            </div>
-                            <div className="text-center p-3 bg-white/5 rounded-lg">
-                                <div className="text-lg font-bold text-white/80">{leetCodeStats.reputation}</div>
-                                <div className="text-xs text-white/50 uppercase">Rep</div>
-                            </div>
+                            <StatBox label="Rank" value={leetCodeStats.rank} highlight />
+                            <StatBox label="Global" value={leetCodeStats.globalRank.toLocaleString()} />
+                            <StatBox label="Badges" value={leetCodeStats.badges} />
+                            <StatBox label="Rep" value={leetCodeStats.reputation} />
                         </div>
 
-                        {/* Progress Bars */}
-                        <div className="space-y-4">
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-green-400">Easy</span>
-                                    <span className="text-white/50">{leetCodeStats.easy.solved}/{leetCodeStats.easy.total} Beats: {leetCodeStats.easy.percent}%</span>
-                                </div>
-                                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-green-500 rounded-full" style={{ width: `${leetCodeStats.easy.percent}%` }}></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-yellow-400">Medium</span>
-                                    <span className="text-white/50">{leetCodeStats.medium.solved}/{leetCodeStats.medium.total} Beats: {leetCodeStats.medium.percent}%</span>
-                                </div>
-                                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-yellow-500 rounded-full" style={{ width: `${leetCodeStats.medium.percent}%` }}></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-red-400">Hard</span>
-                                    <span className="text-white/50">{leetCodeStats.hard.solved}/{leetCodeStats.hard.total} Beats: {leetCodeStats.hard.percent}%</span>
-                                </div>
-                                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-red-500 rounded-full" style={{ width: `${leetCodeStats.hard.percent}%` }}></div>
-                                </div>
-                            </div>
-                        </div>
+                        <Progress label="Easy" color="green" data={leetCodeStats.easy} />
+                        <Progress label="Medium" color="yellow" data={leetCodeStats.medium} />
+                        <Progress label="Hard" color="red" data={leetCodeStats.hard} />
                     </div>
 
-                    {/* GitHub Card */}
+                    {/* GitHub */}
                     <div className="glass rounded-2xl p-6 md:p-8">
                         <div className="flex items-center justify-between mb-6">
-                            <div className="flex items-center gap-3">
-                                <span className="text-2xl">🐙</span>
-                                <h4 className="text-2xl font-bold text-white">Github</h4>
-                            </div>
-                            {/* Grade Badge */}
+                            <a
+                                href="https://github.com/yashraghubanshi"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+                            >
+                                <img src={githubLogo} alt="GitHub" className="w-10 h-10" />
+                                <h4 className="text-2xl font-bold text-white">GitHub</h4>
+                            </a>
+
                             <div className="w-14 h-14 rounded-full border-4 border-purple-500 flex items-center justify-center">
                                 <span className="text-lg font-bold text-purple-400">{githubStats.grade}</span>
                             </div>
                         </div>
 
-                        {/* Stats List */}
                         <div className="space-y-3 mb-8">
-                            <div className="flex justify-between items-center py-2 border-b border-white/5">
-                                <span className="text-white/60 flex items-center gap-2">⭐ Total Stars Earned:</span>
-                                <span className="font-bold">{githubStats.stars}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2 border-b border-white/5">
-                                <span className="text-white/60 flex items-center gap-2">📝 Total Commits:</span>
-                                <span className="font-bold">{githubStats.commits}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2 border-b border-white/5">
-                                <span className="text-white/60 flex items-center gap-2">🔀 Total PRs:</span>
-                                <span className="font-bold">{githubStats.prs}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2 border-b border-white/5">
-                                <span className="text-white/60 flex items-center gap-2">🐛 Total Issues:</span>
-                                <span className="font-bold">{githubStats.issues}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2">
-                                <span className="text-white/60 flex items-center gap-2">📅 Contributed (last year):</span>
-                                <span className="font-bold">{githubStats.contributions}</span>
-                            </div>
+                            <Row label="⭐ Total Stars" value={githubStats.stars} />
+                            <Row label="📝 Commits" value={githubStats.commits} />
+                            <Row label="🔀 PRs" value={githubStats.prs} />
+                            <Row label="🐛 Issues" value={githubStats.issues} />
+                            <Row label="📅 Last Year" value={githubStats.contributions} />
                         </div>
 
-                        {/* Language Breakdown */}
                         <div className="flex flex-wrap gap-4">
                             {githubStats.languages.map(lang => (
                                 <div key={lang.name} className="flex items-center gap-2 text-sm">
-                                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: lang.color }}></span>
+                                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: lang.color }} />
                                     <span className="text-white/70">{lang.name}</span>
                                     <span className="text-white/40">{lang.percent}%</span>
                                 </div>
@@ -153,5 +105,36 @@ const StatsSection = () => {
         </section>
     );
 };
+
+/* Helper Components */
+const StatBox = ({ label, value, highlight }) => (
+    <div className="text-center p-3 bg-white/5 rounded-lg">
+        <div className={`text-lg font-bold ${highlight ? 'text-cyan-400 text-2xl' : 'text-white/80'}`}>
+            {value}
+        </div>
+        <div className="text-xs text-white/50 uppercase">{label}</div>
+    </div>
+);
+
+const Progress = ({ label, color, data }) => (
+    <div className="space-y-2 mb-4">
+        <div className="flex justify-between text-sm">
+            <span className={`text-${color}-400`}>{label}</span>
+            <span className="text-white/50">
+                {data.solved}/{data.total} Beats: {data.percent}%
+            </span>
+        </div>
+        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+            <div className={`h-full bg-${color}-500`} style={{ width: `${data.percent}%` }} />
+        </div>
+    </div>
+);
+
+const Row = ({ label, value }) => (
+    <div className="flex justify-between items-center py-2 border-b border-white/5">
+        <span className="text-white/60">{label}</span>
+        <span className="font-bold">{value}</span>
+    </div>
+);
 
 export default StatsSection;

@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const TerminalLoader = ({ onComplete }) => {
-    // State for multiple completed lines
     const [completedLines, setCompletedLines] = useState([]);
-    // State for the line currently being typed
     const [currentLineText, setCurrentLineText] = useState('');
-    // Index of the line currently being typed
     const [currentLineIndex, setCurrentLineIndex] = useState(0);
 
     const bootSequence = [
@@ -18,13 +15,11 @@ const TerminalLoader = ({ onComplete }) => {
         "SYSTEM_STABLE. WELCOME_YASH."
     ];
 
-    // Ref to handle typing intervals
     const typingTimeoutRef = useRef(null);
 
     useEffect(() => {
-        // If we've gone past the last line, we are done.
         if (currentLineIndex >= bootSequence.length) {
-            // "Instant" transition as requested (small delay for visual cleanup)
+
             const finishTimer = setTimeout(() => {
                 onComplete();
             }, 100);
@@ -33,11 +28,8 @@ const TerminalLoader = ({ onComplete }) => {
 
         const targetLine = bootSequence[currentLineIndex];
 
-        // Typing logic
         if (currentLineText.length < targetLine.length) {
-            // Type next character
-            // Random delay between 30ms and 60ms for "human/machine" typing feel
-            // Not too slow, not too fast.
+
             const delay = Math.random() * 30 + 30;
 
             typingTimeoutRef.current = setTimeout(() => {
@@ -45,8 +37,8 @@ const TerminalLoader = ({ onComplete }) => {
             }, delay);
 
         } else {
-            // Line finished typing. Pause briefly before next line.
-            const pauseDelay = 300; // Breath between lines
+
+            const pauseDelay = 300;
 
             typingTimeoutRef.current = setTimeout(() => {
                 setCompletedLines(prev => [...prev, targetLine]);
@@ -61,7 +53,6 @@ const TerminalLoader = ({ onComplete }) => {
     }, [currentLineIndex, currentLineText, bootSequence, onComplete]);
 
 
-    // -- Matrix Background Effect (Unchanged) --
     useEffect(() => {
         const canvas = document.getElementById('matrix-canvas');
         if (!canvas) return;
@@ -113,7 +104,6 @@ const TerminalLoader = ({ onComplete }) => {
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center font-mono overflow-hidden">
             <canvas id="matrix-canvas" className="absolute inset-0 pointer-events-none" />
 
-            {/* Centered Terminal Box */}
             <div className="relative z-10 w-[90%] max-w-2xl glass p-6 md:p-10 rounded-xl border border-white/10 shadow-2xl">
                 <div className="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
                     <div className="flex space-x-2">
@@ -125,20 +115,20 @@ const TerminalLoader = ({ onComplete }) => {
                 </div>
 
                 <div className="space-y-2 min-h-[200px] flex flex-col items-center justify-center">
-                    {/* Render Completed Lines */}
+
                     {completedLines.map((line, idx) => (
                         <div key={idx} className="text-white text-center font-medium tracking-wide">
                             {line}
                         </div>
                     ))}
 
-                    {/* Render Current Typing Line */}
+
                     {currentLineIndex < bootSequence.length && (
                         <div className="flex items-center">
                             <span className="text-white text-center font-medium tracking-wide">
                                 {currentLineText}
                             </span>
-                            {/* Inline Blinking Cursor */}
+
                             <span className="w-2 h-4 bg-white animate-pulse ml-1 inline-block" />
                         </div>
                     )}

@@ -63,7 +63,7 @@ const ProfileSection = () => {
 
                     {/* LEFT: Avatar with Orbiting Icons */}
                     <div className="flex items-center justify-center">
-                        <div className="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px]">
+                        <div className="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center">
                             {/* Orbiting dashed circles */}
                             <div className="absolute inset-[15%] rounded-full border border-dashed border-white/10"></div>
                             <div className="absolute inset-[5%] rounded-full border border-dashed border-white/10"></div>
@@ -79,6 +79,7 @@ const ProfileSection = () => {
                                         style={{
                                             top: skill.position.top,
                                             left: skill.position.left,
+                                            // Transform is handled by keyframes for counter-spin but we need initial placement
                                             transform: 'translate(-50%, -50%)',
                                             boxShadow: `0 0 15px ${skill.color}30`,
                                         }}
@@ -90,17 +91,13 @@ const ProfileSection = () => {
                             </div>
 
                             {/* Center Avatar - CYAN RING with RIPPLE */}
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <div className="relative">
                                 {/* Evaporating Ring - expands outward */}
-                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                                                w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full
-                                                border-2 border-cyan-400 animate-ripple"></div>
+                                <div className="absolute top-1/2 left-1/2 w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full border-2 border-cyan-400 animate-ripple" style={{ transform: 'translate(-50%, -50%)' }}></div>
 
                                 {/* Avatar Ring */}
-                                <div className="relative w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full 
-                                                bg-gradient-to-br from-cyan-400 to-cyan-500 p-[3px]">
+                                <div className="relative w-[140px] h-[140px] md:w-[180px] md:h-[180px] rounded-full bg-gradient-to-br from-cyan-400 to-cyan-500 p-[3px]">
                                     <div className="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
-                                        {/* Replace with your actual image */}
                                         <span className="text-7xl">👨‍💻</span>
                                     </div>
                                 </div>
