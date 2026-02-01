@@ -1,9 +1,11 @@
 import React from 'react';
 import AnimatedBackground from './AnimatedBackground';
+import CursorParticles from './CursorParticles';
 
 const HomePage = () => {
     return (
         <div className="min-h-screen bg-transparent text-white selection:bg-cyan-500/30 selection:text-white relative font-sans overflow-x-hidden">
+            <CursorParticles />
             <AnimatedBackground />
 
             {/* Full-width Dark Glass Navbar - No Border */}
