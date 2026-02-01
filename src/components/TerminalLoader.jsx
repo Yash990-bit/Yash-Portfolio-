@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const TerminalLoader = ({ onComplete }) => {
-    const [lines, setLines] = useState([]);
+    // State for multiple completed lines
+    const [completedLines, setCompletedLines] = useState([]);
+    // State for the line currently being typed
+    const [currentLineText, setCurrentLineText] = useState('');
+    // Index of the line currently being typed
     const [currentLineIndex, setCurrentLineIndex] = useState(0);
 
     const bootSequence = [
@@ -14,21 +18,50 @@ const TerminalLoader = ({ onComplete }) => {
         "SYSTEM_STABLE. WELCOME_YASH."
     ];
 
-    useEffect(() => {
-        if (currentLineIndex < bootSequence.length) {
-            const timer = setTimeout(() => {
-                setLines(prev => [...prev, bootSequence[currentLineIndex]]);
-                setCurrentLineIndex(prev => prev + 1);
-            }, Math.random() * 400 + 400);
-            return () => clearTimeout(timer);
-        } else {
-            setTimeout(() => {
-                onComplete();
-            }, 1500);
-        }
-    }, [currentLineIndex]);
+    // Ref to handle typing intervals
+    const typingTimeoutRef = useRef(null);
 
-    // White Binary Background Effect
+    useEffect(() => {
+        // If we've gone past the last line, we are done.
+        if (currentLineIndex >= bootSequence.length) {
+            // "Instant" transition as requested (small delay for visual cleanup)
+            const finishTimer = setTimeout(() => {
+                onComplete();
+            }, 100);
+            return () => clearTimeout(finishTimer);
+        }
+
+        const targetLine = bootSequence[currentLineIndex];
+
+        // Typing logic
+        if (currentLineText.length < targetLine.length) {
+            // Type next character
+            // Random delay between 30ms and 60ms for "human/machine" typing feel
+            // Not too slow, not too fast.
+            const delay = Math.random() * 30 + 30;
+
+            typingTimeoutRef.current = setTimeout(() => {
+                setCurrentLineText(targetLine.slice(0, currentLineText.length + 1));
+            }, delay);
+
+        } else {
+            // Line finished typing. Pause briefly before next line.
+            const pauseDelay = 300; // Breath between lines
+
+            typingTimeoutRef.current = setTimeout(() => {
+                setCompletedLines(prev => [...prev, targetLine]);
+                setCurrentLineText('');
+                setCurrentLineIndex(prev => prev + 1);
+            }, pauseDelay);
+        }
+
+        return () => {
+            if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+        };
+    }, [currentLineIndex, currentLineText, bootSequence, onComplete]);
+
+
+    // -- Matrix Background Effect (Unchanged) --
     useEffect(() => {
         const canvas = document.getElementById('matrix-canvas');
         if (!canvas) return;
@@ -48,14 +81,14 @@ const TerminalLoader = ({ onComplete }) => {
         const drops = [];
 
         for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100; // Start at different positions
+            drops[i] = Math.random() * -100;
         }
 
         const draw = () => {
             ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; // White binary with transparency
+            ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
             ctx.font = fontSize + "px monospace";
 
             for (let i = 0; i < drops.length; i++) {
@@ -91,24 +124,29 @@ const TerminalLoader = ({ onComplete }) => {
                     <span className="text-white/40 text-[10px] uppercase tracking-[0.3em]">session_id: 0xYASH</span>
                 </div>
 
-                <div className="space-y-4 min-h-[200px]">
-                    {lines.map((line, idx) => (
-                        <div key={idx} className="flex flex-col items-center">
-                            <span className="text-white text-center font-medium tracking-wide">
-                                {line}
-                            </span>
+                <div className="space-y-2 min-h-[200px] flex flex-col items-center justify-center">
+                    {/* Render Completed Lines */}
+                    {completedLines.map((line, idx) => (
+                        <div key={idx} className="text-white text-center font-medium tracking-wide">
+                            {line}
                         </div>
                     ))}
+
+                    {/* Render Current Typing Line */}
                     {currentLineIndex < bootSequence.length && (
-                        <div className="flex justify-center mt-4">
-                            <div className="w-2 h-5 bg-white animate-pulse" />
+                        <div className="flex items-center">
+                            <span className="text-white text-center font-medium tracking-wide">
+                                {currentLineText}
+                            </span>
+                            {/* Inline Blinking Cursor */}
+                            <span className="w-2 h-4 bg-white animate-pulse ml-1 inline-block" />
                         </div>
                     )}
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-[9px] text-white/30 uppercase tracking-widest">
                     <span>System Status: Stable</span>
-                    <span>Buffer: Loaded</span>
+                    <span>Buffer: Typing...</span>
                 </div>
             </div>
 
