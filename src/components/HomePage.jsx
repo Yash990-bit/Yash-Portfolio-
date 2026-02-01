@@ -87,14 +87,14 @@ const HomePage = () => {
 
 
                     <div className="flex items-center justify-center gap-12 mt-16">
-                        <a href="#" className="text-white/40 hover:text-cyan-400 transition-all hover:scale-125">
+                        <a href="https://github.com/Yash990-bit" className="text-white/40 hover:text-white transition-all hover:scale-125">
                             <i className="fab fa-github text-2xl"></i>
                         </a>
-                        <a href="#" className="text-white/40 hover:text-cyan-400 transition-all hover:scale-125">
+                        <a href="https://www.linkedin.com/in/yash-raghubanshi-ba9ba630b/" className="text-white/40 hover:text-cyan-300 transition-all hover:scale-125">
                             <i className="fab fa-linkedin text-2xl"></i>
                         </a>
-                        <a href="#" className="text-white/40 hover:text-cyan-400 transition-all hover:scale-125">
-                            <i className="fab fa-twitter text-2xl"></i>
+                        <a href="https://www.instagram.com/whyash7/" className="text-white/40 hover:text-pink-300 transition-all hover:scale-125">
+                        <i className="fab fa-instagram text-2xl"></i>
                         </a>
                     </div>
                 </div>
