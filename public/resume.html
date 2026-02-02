@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Raghubanshi - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 p-8 md:p-16">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-8 md:p-12 border border-gray-100 relative">
+
+        <!-- Print Button -->
+        <button onclick="window.print()"
+            class="no-print absolute top-8 right-8 bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition font-medium text-sm flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Save as PDF
+        </button>
+
+        <!-- Header -->
+        <header class="border-b border-gray-200 pb-8 mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2">Yash Raghubanshi</h1>
+            <div class="text-sm text-gray-600 space-y-1">
+                <p>Phone: +91 73075 97720</p>
+                <p>Email: <a href="mailto:yash.raghubanshi2024@nst.rishihood.edu.in"
+                        class="text-cyan-600 hover:underline">yash.raghubanshi2024@nst.rishihood.edu.in</a></p>
+                <div class="flex gap-4 mt-3 text-cyan-600 font-medium text-xs uppercase tracking-wide">
+                    <a href="https://www.linkedin.com/in/yash-raghubanshi-ba9ba630b/" target="_blank"
+                        class="hover:underline">LinkedIn</a> •
+                    <a href="https://github.com/Yash990-bit" target="_blank" class="hover:underline">Github</a> •
+                    <a href="#" class="hover:underline">Codeforces</a> •
+                    <a href="#" class="hover:underline">Leetcode</a> •
+                    <a href="#" class="hover:underline">Portfolio</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 border-b border-gray-100 pb-1">
+                Professional Summary</h2>
+            <p class="text-gray-700 leading-relaxed text-sm">
+                Aspiring AI-ML Engineer with a strong frontend foundation in Full Stack practices, passionate about
+                building user-friendly web applications. Solved 170+ LeetCode questions, Codeforces rating 900+.
+            </p>
+        </section>
+
+        <!-- Projects -->
+        <section class="mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-gray-100 pb-1">
+                Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-baseline mb-1">
+                    <h3 class="text-lg font-bold text-gray-900">Multi-Disease Detection System</h3>
+                    <span class="text-xs text-gray-500 font-mono">January 2026</span>
+                </div>
+                <div class="text-xs text-cyan-600 mb-2 font-medium">
+                    <a href="https://github.com/Yash990-bit/multi_disease_detection" target="_blank"
+                        class="hover:underline">Github</a> | <a href="https://multi-disease-detection.vercel.app/"
+                        target="_blank" class="hover:underline">Demo</a>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
+                    <li>Multi-Disease Detection System that predicts Liver, Heart, and Diabetes diseases using machine
+                        learning models trained with Pandas, NumPy, and Scikit-learn.</li>
+                    <li>Full-stack implementation with <strong>Streamlit</strong>, <strong>FastAPI</strong>, and
+                        <strong>SQLAlchemy</strong> backend for secure API handling and model serving.</li>
+                    <li>Developed an interactive UI using <strong>React (Vite + Tailwind)</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-baseline mb-1">
+                    <h3 class="text-lg font-bold text-gray-900">Link-Up</h3>
+                    <span class="text-xs text-gray-500 font-mono">January 2026</span>
+                </div>
+                <div class="text-xs text-cyan-600 mb-2 font-medium">
+                    <a href="https://github.com/Yash990-bit/Link-Up" target="_blank" class="hover:underline">Github</a>
+                    | <a href="https://link-up-eta-eight.vercel.app/" target="_blank" class="hover:underline">Demo</a>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
+                    <li>Real-time live chat and video calling platform enabling instant messaging, group chats, and
+                        high-quality video calls.</li>
+                    <li>Modern, scalable frontend using <strong>React</strong>, <strong>Tailwind CSS</strong>,
+                        <strong>Zustand</strong>, and <strong>React Query</strong> for fast state management.</li>
+                    <li>Built with <strong>Stream SDK</strong> for robust real-time communication.</li>
+                </ul>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-baseline mb-1">
+                    <h3 class="text-lg font-bold text-gray-900">Expense-Pilot</h3>
+                    <span class="text-xs text-gray-500 font-mono">December 2025</span>
+                </div>
+                <div class="text-xs text-cyan-600 mb-2 font-medium">
+                    <a href="https://github.com/Yash990-bit/Expense-Pilot" target="_blank"
+                        class="hover:underline">Github</a> | <a href="https://expense-pilot-liard.vercel.app/"
+                        target="_blank" class="hover:underline">Demo</a>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
+                    <li>Full-stack web application designed to manage income, expenses, and balance in one place.</li>
+                    <li>Features secure user authentication (<strong>JWT</strong>), real-time balance updates, and
+                        interactive charts.</li>
+                    <li>Tech Stack: <strong>React, Node.js, Express.js, MongoDB, Tailwind CSS</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-baseline mb-1">
+                    <h3 class="text-lg font-bold text-gray-900">Auction House</h3>
+                    <span class="text-xs text-gray-500 font-mono">April 2025</span>
+                </div>
+                <div class="text-xs text-cyan-600 mb-2 font-medium">
+                    <a href="#" target="_blank" class="hover:underline">Github</a> | <a href="#" target="_blank"
+                        class="hover:underline">Demo</a>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
+                    <li>Real-time online auction platform allowing users to participate in live bidding with up-to-date
+                        price updates.</li>
+                    <li>Secure authentication system ensuring safe and fair bidding.</li>
+                    <li>Tech Stack: <strong>React.js, Firebase, JavaScript</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-gray-100 pb-1">
+                Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 text-sm">
+                <div>
+                    <span class="font-bold text-gray-900 w-32 inline-block">Languages:</span>
+                    <span class="text-gray-700">Python, HTML, CSS, JavaScript, SQL</span>
+                </div>
+                <div>
+                    <span class="font-bold text-gray-900 w-32 inline-block">Frameworks:</span>
+                    <span class="text-gray-700">React, Node.js, Express.js, Tailwind CSS</span>
+                </div>
+                <div>
+                    <span class="font-bold text-gray-900 w-32 inline-block">Tools:</span>
+                    <span class="text-gray-700">Git/Github, Firebase, Postman, Figma</span>
+                </div>
+                <div>
+                    <span class="font-bold text-gray-900 w-32 inline-block">Data Science:</span>
+                    <span class="text-gray-700">Pandas, NumPy, Scikit-learn, Excel</span>
+                </div>
+                <div>
+                    <span class="font-bold text-gray-900 w-32 inline-block">Databases:</span>
+                    <span class="text-gray-700">MongoDB, MySQL, PostgreSQL, Prisma ORM</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extra Curricular -->
+        <section>
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-gray-100 pb-1">
+                Extracurricular Activities</h2>
+            <ul class="list-disc list-outside ml-4 text-sm text-gray-700 space-y-1">
+                <li>Helped with Logistics and Organising Committee in <strong>DAMRU Fest</strong>.</li>
+                <li>Member of Organizing Committee in <strong>Go for Gold</strong>, assisted with planning and
+                    coordination.</li>
+                <li>Played as Team Member in Cricket, <strong>BOSM Sports Fest</strong>, BITS Pilani.</li>
+            </ul>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

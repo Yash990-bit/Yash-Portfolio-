@@ -22,49 +22,55 @@ import {
   SiGooglescholar,
   SiStreamlit,
   SiMysql,
-  SiKaggle 
+  SiKaggle
 } from 'react-icons/si';
 
 const skills = [
-  { name: 'React', color: '#61DAFB' },
-  { name: 'Tailwind CSS', color: '#38BDF8' },
-  { name: 'Node.js', color: '#339933' },
-  { name: 'Express.js', color: '#111111' },
+  { name: 'React', color: '#61DAFB', icon: SiReact },
+  { name: 'Tailwind', color: '#38BDF8', icon: SiTailwindcss },
+  { name: 'Node.js', color: '#339933', icon: SiNodedotjs },
+  { name: 'Express', color: '#fff', icon: SiExpress },
 
-  { name: 'JavaScript', color: '#F7DF1E' },
-  { name: 'TypeScript', color: '#3178C6' },
+  { name: 'JS', color: '#F7DF1E', icon: SiJavascript },
+  { name: 'TS', color: '#3178C6', icon: SiTypescript },
 
-  { name: 'HTML5', color: '#E34F26' },
-  { name: 'CSS3', color: '#1572B6' },
+  { name: 'HTML5', color: '#E34F26', icon: SiHtml5 },
+  { name: 'CSS3', color: '#1572B6', icon: SiCss3 },
 
-  { name: 'Python', color: '#3776AB' },
-  { name: 'Jupyter', color: '#F37626' },
-  { name: 'Google Colab', color: '#F9AB00' },
-  { name: 'Streamlit', color: '#FF4B4B' },
-  { name: 'Kaggle', color: '#20BEFF' }, 
+  { name: 'Python', color: '#3776AB', icon: SiPython },
+  { name: 'Jupyter', color: '#F37626', icon: SiJupyter },
+  { name: 'Colab', color: '#F9AB00', icon: SiGooglescholar },
+  { name: 'Streamlit', color: '#FF4B4B', icon: SiStreamlit },
+  { name: 'Kaggle', color: '#20BEFF', icon: SiKaggle },
 
-  { name: 'MongoDB', color: '#47A248' },
-  { name: 'MySQL', color: '#4479A1' },
+  { name: 'MongoDB', color: '#47A248', icon: SiMongodb },
+  { name: 'MySQL', color: '#4479A1', icon: SiMysql },
 
-  { name: 'Git', color: '#F05032' },
-  { name: 'GitHub', color: '#181717' },
+  { name: 'Git', color: '#F05032', icon: SiGit },
+  { name: 'GitHub', color: '#fff', icon: SiGithub },
 
-  { name: 'Firebase', color: '#FFCA28' },
-  { name: 'Vercel', color: '#000000' },
-  { name: 'Netlify', color: '#00C7B7' },
+  { name: 'Firebase', color: '#FFCA28', icon: SiFirebase },
+  { name: 'Vercel', color: '#fff', icon: SiVercel },
+  { name: 'Netlify', color: '#00C7B7', icon: SiNetlify },
 
-  { name: 'Figma', color: '#F24E1E' },
-  { name: 'Vite', color: '#646CFF' }
+  { name: 'Figma', color: '#F24E1E', icon: SiFigma },
+  { name: 'Vite', color: '#646CFF', icon: SiVite }
 ];
 
 const SkillsPlayground = () => {
   const sceneRef = useRef(null);
   const engineRef = useRef(null);
+  const bodiesRef = useRef([]); // To store physics bodies
+  const itemsRef = useRef([]); // To store DOM elements
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setInView(true),
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
       { threshold: 0.1 }
     );
 
@@ -75,138 +81,124 @@ const SkillsPlayground = () => {
   useEffect(() => {
     if (!inView) return;
 
-    const {
-      Engine,
-      Render,
-      Runner,
-      Bodies,
-      Composite,
-      Mouse,
-      MouseConstraint,
-      Events
-    } = Matter;
+    const { Engine, World, Bodies, Mouse, MouseConstraint, Composite, Runner, Events } = Matter;
 
+    // 1. Setup Engine
     const engine = Engine.create();
     engineRef.current = engine;
+    const world = engine.world;
 
     const container = sceneRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    const render = Render.create({
-      element: container,
-      engine,
-      options: {
-        width,
-        height,
-        background: 'transparent',
-        wireframes: false,
-        pixelRatio: window.devicePixelRatio
-      }
-    });
-
-    const wallOptions = { isStatic: true, render: { fillStyle: 'transparent' } };
+    // 2. Create Boundaries
+    const wallOptions = { isStatic: true, render: { visible: false } };
     const ground = Bodies.rectangle(width / 2, height + 50, width, 100, wallOptions);
     const leftWall = Bodies.rectangle(-50, height / 2, 100, height, wallOptions);
     const rightWall = Bodies.rectangle(width + 50, height / 2, 100, height, wallOptions);
 
-    Composite.add(engine.world, [ground, leftWall, rightWall]);
+    Composite.add(world, [ground, leftWall, rightWall]);
 
-    const skillBodies = skills.map(skill =>
-      Bodies.rectangle(
-        Math.random() * (width - 100) + 50,
-        -Math.random() * 400 - 50,
-        140,
-        140,
+    // 3. Create Bodies for each Skill
+    const newBodies = skills.map(() => {
+      return Bodies.rectangle(
+        Math.random() * (width - 100) + 50, // Random X
+        -Math.random() * 500 - 50,          // Random Y (above screen)
+        120, // Width (Updated sizing)
+        120, // Height
         {
-          chamfer: { radius: 20 },
+          chamfer: { radius: 10 },
           restitution: 0.6,
           friction: 0.01,
-          density: 0.04,
-          render: { opacity: 0 },
-          plugin: { skill }
+          frictionAir: 0.02,
         }
-      )
-    );
+      );
+    });
 
-    Composite.add(engine.world, skillBodies);
+    bodiesRef.current = newBodies;
+    Composite.add(world, newBodies);
 
-    /* Mouse control */
-    const mouse = Mouse.create(render.canvas);
+    // 4. Mouse Control
+    const mouse = Mouse.create(container);
     const mouseConstraint = MouseConstraint.create(engine, {
-      mouse,
+      mouse: mouse,
       constraint: {
-        stiffness: 0.2,
+        stiffness: 0.1,
         render: { visible: false }
       }
     });
+    Composite.add(world, mouseConstraint);
 
-    Composite.add(engine.world, mouseConstraint);
-    render.mouse = mouse;
+    // Remove mouse wheel capture
+    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
-    Events.on(render, 'afterRender', () => {
-      const ctx = render.context;
-
-      skillBodies.forEach(body => {
-        const { position, angle } = body;
-        const { skill } = body.plugin;
-
-        ctx.save();
-        ctx.translate(position.x, position.y);
-        ctx.rotate(angle);
-
-        const size = 140;
-        const r = 20;
-
-        ctx.fillStyle = skill.color;
-        ctx.beginPath();
-        ctx.moveTo(-size / 2 + r, -size / 2);
-        ctx.lineTo(size / 2 - r, -size / 2);
-        ctx.quadraticCurveTo(size / 2, -size / 2, size / 2, -size / 2 + r);
-        ctx.lineTo(size / 2, size / 2 - r);
-        ctx.quadraticCurveTo(size / 2, size / 2, size / 2 - r, size / 2);
-        ctx.lineTo(-size / 2 + r, size / 2);
-        ctx.quadraticCurveTo(-size / 2, size / 2, -size / 2, size / 2 - r);
-        ctx.lineTo(-size / 2, -size / 2 + r);
-        ctx.quadraticCurveTo(-size / 2, -size / 2, -size / 2 + r, -size / 2);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.fillStyle = skill.name === 'JavaScript' ? '#000' : '#fff';
-        ctx.font = 'bold 16px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(skill.name, 0, 0);
-
-        ctx.restore();
-      });
-    });
-
-    Render.run(render);
+    // 5. Sync Loop
     const runner = Runner.create();
     Runner.run(runner, engine);
 
+    let animationFrameId;
+
+    const updateLoop = () => {
+      if (!itemsRef.current.length) return;
+
+      newBodies.forEach((body, index) => {
+        const domNode = itemsRef.current[index];
+        if (domNode) {
+          const { x, y } = body.position;
+          const angle = body.angle;
+          // Directly updating transform for performance (offset by half width/height)
+          domNode.style.transform = `translate(${x - 60}px, ${y - 60}px) rotate(${angle}rad)`;
+        }
+      });
+      animationFrameId = requestAnimationFrame(updateLoop);
+    };
+    updateLoop();
+
     return () => {
-      Render.stop(render);
+      cancelAnimationFrame(animationFrameId);
       Runner.stop(runner);
-      Composite.clear(engine.world);
       Engine.clear(engine);
-      render.canvas.remove();
+      Composite.clear(world);
     };
   }, [inView]);
 
   return (
-    <section className="py-20 bg-black text-white relative overflow-hidden">
+    <section className="py-20 bg-[#050505] text-white relative overflow-hidden" id="skills">
       <div className="text-center mb-10">
         <h2 className="text-4xl md:text-5xl font-bold">
           Skills <span className="text-cyan-400">Playground</span>
         </h2>
+        <p className="text-gray-400 mt-4">Drag and throw the blocks!</p>
       </div>
 
       <div
         ref={sceneRef}
-        className="w-full h-[600px] bg-[#050505] border-t border-b border-white/10"
-      />
+        className="w-full h-[600px] relative bg-black/50 border-t border-b border-white/10 overflow-hidden cursor-grab active:cursor-grabbing"
+      >
+        {/* Render DOM Elements synced to Physics */}
+        {skills.map((skill, index) => (
+          <div
+            key={index}
+            ref={(el) => (itemsRef.current[index] = el)}
+            className="absolute top-0 left-0 w-[120px] h-[120px] rounded-2xl flex flex-col items-center justify-center gap-3 shadow-lg select-none will-change-transform border border-white/10"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.05)', // Dark Glass
+              backdropFilter: 'blur(5px)',
+              boxShadow: `0 0 20px -5px ${skill.color}40`, // Colored Glow
+              zIndex: 10
+            }}
+          >
+            {/* Colored Icon - The "Logo" */}
+            <skill.icon className="text-4xl" style={{ color: skill.color }} />
+
+            <span className="text-xs font-bold uppercase tracking-wide text-white/80">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

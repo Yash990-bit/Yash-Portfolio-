@@ -9,3 +9,4 @@ export default defineConfig({
     tailwindcss(),
   ],
 })
+// Config updated to trigger reload

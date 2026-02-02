@@ -90,9 +90,13 @@ const HomePage = () => {
                         >
                             Contact Me
                         </button>
-                        <button className="bg-transparent px-12 py-4 rounded-full font-bold hover:bg-white/5 transition-all text-sm uppercase tracking-wider backdrop-blur-sm ring-1 ring-white/20 hover:ring-white/40">
+                        <a
+                            href="/resume.html"
+                            target="_blank"
+                            className="bg-transparent px-12 py-4 rounded-full font-bold hover:bg-white/5 transition-all text-sm uppercase tracking-wider backdrop-blur-sm ring-1 ring-white/20 hover:ring-white/40 flex items-center justify-center cursor-pointer"
+                        >
                             My Resume
-                        </button>
+                        </a>
                     </div>
 
 
