@@ -3,195 +3,195 @@ import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaCheckCirc
 
 const projects = [
     {
-  id: 1,
-  title: "AI Multi-Disease Detection",
-  category: "Machine Learning / Web Application",
-  description:
-    "An AI-powered healthcare web application that predicts the likelihood of Liver Disease, Heart Disease, and Diabetes using trained machine learning models. The system provides fast, accurate predictions through an interactive UI, helping users understand health risks based on medical parameters.",
+        id: 1,
+        title: "AI Multi-Disease Detection",
+        category: "Machine Learning / Web Application",
+        description:
+            "An AI-powered healthcare web application that predicts the likelihood of Liver Disease, Heart Disease, and Diabetes using trained machine learning models. The system provides fast, accurate predictions through an interactive UI, helping users understand health risks based on medical parameters.",
 
-  image:
-   "https://img.freepik.com/free-photo/black-med-school-scholar-studying-taking-notes-using-online-information_482257-117794.jpg?semt=ais_hybrid&w=740&q=80",
+        image:
+            "https://img.freepik.com/free-photo/black-med-school-scholar-studying-taking-notes-using-online-information_482257-117794.jpg?semt=ais_hybrid&w=740&q=80",
 
-  features: [
-    "Multi-disease prediction (Liver, Heart, Diabetes)",
-    "Machine learning models trained on medical datasets",
-    "Interactive data visualization using charts",
-    "User-friendly web interface for medical inputs",
-    "Secure backend with data validation"
-  ],
+        features: [
+            "Multi-disease prediction (Liver, Heart, Diabetes)",
+            "Machine learning models trained on medical datasets",
+            "Interactive data visualization using charts",
+            "User-friendly web interface for medical inputs",
+            "Secure backend with data validation"
+        ],
 
-  techStack: [
-    "React",
-    "Vite",
-    "Tailwind CSS",
-    "Axios",
-    "Python",
-    "FastAPI",
-    "Uvicorn",
-    "Pandas",
-    "NumPy",
-    "Kaggle",
-    "Scikit-learn",
-    "Joblib",
-    "Matplotlib",
-    "Seaborn",
-    "Streamlit"
-    ],
-    liveLink: "https://multi-disease-detection.vercel.app/",
-    githubLink: "https://github.com/Yash990-bit/multi_disease_detection",
-    color: "cyan"
+        techStack: [
+            "React",
+            "Vite",
+            "Tailwind CSS",
+            "Axios",
+            "Python",
+            "FastAPI",
+            "Uvicorn",
+            "Pandas",
+            "NumPy",
+            "Kaggle",
+            "Scikit-learn",
+            "Joblib",
+            "Matplotlib",
+            "Seaborn",
+            "Streamlit"
+        ],
+        liveLink: "https://multi-disease-detection.vercel.app/",
+        githubLink: "https://github.com/Yash990-bit/multi_disease_detection",
+        color: "cyan"
     },
 
     {
-  id: 2,
-  title: "Language Learning Platform",
-  category: "Full Stack Web Application",
-  description:
-    "A real-time language learning platform that connects learners and tutors through live chat and video calls. Users can practice languages interactively with instant messaging, video sessions, and a modern responsive UI.",
+        id: 2,
+        title: "Language Learning Platform",
+        category: "Full Stack Web Application",
+        description:
+            "A real-time language learning platform that connects learners and tutors through live chat and video calls. Users can practice languages interactively with instant messaging, video sessions, and a modern responsive UI.",
 
-  image:
-    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop",
+        image:
+            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop",
 
-  features: [
-    "Live one-to-one video calling for language practice",
-    "Real-time chat messaging system",
-    "User authentication and secure sessions",
-    "Tutor and learner role-based access",
-    "Modern responsive UI with notifications",
-    "Fast and scalable backend APIs"
-  ],
+        features: [
+            "Live one-to-one video calling for language practice",
+            "Real-time chat messaging system",
+            "User authentication and secure sessions",
+            "Tutor and learner role-based access",
+            "Modern responsive UI with notifications",
+            "Fast and scalable backend APIs"
+        ],
 
-  techStack: [
-    "React",
-    "Vite",
-    "Tailwind CSS",
-    "DaisyUI",
-    "Zustand",
-    "Axios",
-    "React Router",
-    "React Query",
-    "Stream Video SDK",
-    "Stream Chat",
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "Mongoose",
-    "JWT Authentication",
-    "bcryptjs",
-    "CORS",
-    "Cookie Parser",
-    "dotenv"
-    ],
+        techStack: [
+            "React",
+            "Vite",
+            "Tailwind CSS",
+            "DaisyUI",
+            "Zustand",
+            "Axios",
+            "React Router",
+            "React Query",
+            "Stream Video SDK",
+            "Stream Chat",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose",
+            "JWT Authentication",
+            "bcryptjs",
+            "CORS",
+            "Cookie Parser",
+            "dotenv"
+        ],
 
-    liveLink: "https://link-up-eta-eight.vercel.app/",
-    githubLink: "https://github.com/Yash990-bit/Link-Up",
-    color: "orange"
+        liveLink: "https://link-up-eta-eight.vercel.app/",
+        githubLink: "https://github.com/Yash990-bit/Link-Up",
+        color: "orange"
     },
 
     {
-    id: 3,
-    title: "Expense Tracker – Full Stack Application",
-    category: "Finance / Productivity",
-    description: "A full-stack Expense Tracker web application that helps users manage income, expenses, and balance efficiently with authentication, analytics, and export features.",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1964&auto=format&fit=crop",
-    features: [
-    "JWT-based user authentication",
-    "Add, edit, and delete income & expense records",
-    "Automatic balance calculation",
-    "Category-wise and date-wise tracking",
-    "Interactive charts and analytics",
-    "Export expenses to Excel",
-    ],
-    techStack: [
-    "React",
-    "Vite",
-    "React Router DOM",
-    "Tailwind CSS",
-    "Recharts",
-    "Axios",
-    "React Icons",
-    "React Hot Toast",
-    "Emoji Picker",
-    "Moment.js",
+        id: 3,
+        title: "Expense Tracker – Full Stack Application",
+        category: "Finance / Productivity",
+        description: "A full-stack Expense Tracker web application that helps users manage income, expenses, and balance efficiently with authentication, analytics, and export features.",
+        image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1964&auto=format&fit=crop",
+        features: [
+            "JWT-based user authentication",
+            "Add, edit, and delete income & expense records",
+            "Automatic balance calculation",
+            "Category-wise and date-wise tracking",
+            "Interactive charts and analytics",
+            "Export expenses to Excel",
+        ],
+        techStack: [
+            "React",
+            "Vite",
+            "React Router DOM",
+            "Tailwind CSS",
+            "Recharts",
+            "Axios",
+            "React Icons",
+            "React Hot Toast",
+            "Emoji Picker",
+            "Moment.js",
 
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "Mongoose",
-    "JWT Authentication",
-    "bcrypt.js",
-    "Multer",
-    "dotenv",
-    "CORS",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose",
+            "JWT Authentication",
+            "bcrypt.js",
+            "Multer",
+            "dotenv",
+            "CORS",
 
-    "Excel (XLSX)",
-    "Nodemon"
-    ],
-    liveLink: "https://expense-pilot-liard.vercel.app/",
-    githubLink: "https://github.com/Yash990-bit/Expense-Pilot",
-    color: "green"
+            "Excel (XLSX)",
+            "Nodemon"
+        ],
+        liveLink: "https://expense-pilot-liard.vercel.app/",
+        githubLink: "https://github.com/Yash990-bit/Expense-Pilot",
+        color: "green"
     },
 
     {
-    id: 4,
-    title: "EstateEdge ",
-    category: "Auction Platform",
-    description: "EstateEdge is a modern real estate bidding platform that enables users to browse properties, participate in online auctions, and manage bids in a fast and responsive environment.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1974&auto=format&fit=crop",
-    features: [
-        "Secure user authentication using Firebase",
-        "Real-time property listing and bidding",
-        "Responsive and fast UI powered by Vite",
-        "Protected routes with React Router",
-        "Cloud Firestore for real-time database",
-        "Firebase Hosting for deployment",
-    ],
-    techStack: [
-        "React",
-        "Vite",
-        "JavaScript",
-        "Firebase Authentication",
-        "Firebase Firestore",
-        "Firebase Hosting",
-        "React Router DOM",
-        "Font Awesome",
-        "ESLint"
-    ],
-    liveLink: "https://benevolent-madeleine-e6ac6d.netlify.app/",
-    githubLink: "https://github.com/Yash990-bit/EstateEdge",
-    color: "yellow"
+        id: 4,
+        title: "EstateEdge ",
+        category: "Auction Platform",
+        description: "EstateEdge is a modern real estate bidding platform that enables users to browse properties, participate in online auctions, and manage bids in a fast and responsive environment.",
+        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1974&auto=format&fit=crop",
+        features: [
+            "Secure user authentication using Firebase",
+            "Real-time property listing and bidding",
+            "Responsive and fast UI powered by Vite",
+            "Protected routes with React Router",
+            "Cloud Firestore for real-time database",
+            "Firebase Hosting for deployment",
+        ],
+        techStack: [
+            "React",
+            "Vite",
+            "JavaScript",
+            "Firebase Authentication",
+            "Firebase Firestore",
+            "Firebase Hosting",
+            "React Router DOM",
+            "Font Awesome",
+            "ESLint"
+        ],
+        liveLink: "https://benevolent-madeleine-e6ac6d.netlify.app/",
+        githubLink: "https://github.com/Yash990-bit/EstateEdge",
+        color: "yellow"
     },
 
     {
-    id: 5,
-    title: "Skill Sync",
-    category: "Skill Sharing Platform",
-    description: "Skill Sync is a full-stack skill learning and sharing platform that helps users explore, learn, and grow their skills through a secure, responsive, and user-friendly interface.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1974&auto=format&fit=crop",
-    features: [
-    "User authentication with secure login and signup",
-    "JWT-based authentication and protected routes",
-    "Responsive navbar with mobile toggle",
-    "Modern UI built with Tailwind CSS",
-    "Seamless navigation using React Router",
-    "API integration using Axios",
-    "Token handling with local storage",
-    ],
-    techStack: [
-    "React",
-    "JavaScript",
-    "Tailwind CSS",
-    "React Router DOM",
-    "Axios",
-    "Node.js",
-    "Express.js",
-    "Prisma ORM",
-    "PostgreSQL",
-    "JWT Authentication"
-    ],
-    liveLink: "https://skill-sync-opal.vercel.app/",
-    githubLink: "https://github.com/Yash990-bit/SkillSync",
-    color: "red"
+        id: 5,
+        title: "Skill Sync",
+        category: "Skill Sharing Platform",
+        description: "Skill Sync is a full-stack skill learning and sharing platform that helps users explore, learn, and grow their skills through a secure, responsive, and user-friendly interface.",
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1974&auto=format&fit=crop",
+        features: [
+            "User authentication with secure login and signup",
+            "JWT-based authentication and protected routes",
+            "Responsive navbar with mobile toggle",
+            "Modern UI built with Tailwind CSS",
+            "Seamless navigation using React Router",
+            "API integration using Axios",
+            "Token handling with local storage",
+        ],
+        techStack: [
+            "React",
+            "JavaScript",
+            "Tailwind CSS",
+            "React Router DOM",
+            "Axios",
+            "Node.js",
+            "Express.js",
+            "Prisma ORM",
+            "PostgreSQL",
+            "JWT Authentication"
+        ],
+        liveLink: "https://skill-sync-opal.vercel.app/",
+        githubLink: "https://github.com/Yash990-bit/SkillSync",
+        color: "red"
     }
 
 
@@ -211,21 +211,70 @@ const ProjectsSection = () => {
 
     const currentProject = projects[currentIndex];
 
+    // Helper for Shadow Gradients
     const getShadowColor = (color) => {
         switch (color) {
             case 'orange': return 'from-orange-500/20 to-red-500/20';
-            case 'red': return 'from-red-500/20 to-orange-500/20';
+            case 'red': return 'from-red-500/20 to-pink-500/20';
+            case 'green': return 'from-green-500/20 to-emerald-500/20';
+            case 'yellow': return 'from-yellow-500/20 to-orange-500/20';
             default: return 'from-cyan-500/20 to-purple-500/20';
         }
     };
 
+    // Helper for Pagination Dots
     const getActiveDotColor = (color) => {
         switch (color) {
             case 'orange': return 'bg-orange-400';
             case 'red': return 'bg-red-400';
+            case 'green': return 'bg-green-400';
+            case 'yellow': return 'bg-yellow-400';
             default: return 'bg-cyan-400';
         }
     };
+
+    // Helper for Badge/Text Colors (Reduces JSX complexity)
+    const getColorClasses = (color) => {
+        switch (color) {
+            case 'orange':
+                return {
+                    badge: 'border-orange-500/30 bg-orange-500/10 text-orange-400',
+                    text: 'text-orange-400',
+                    shadow: '0 0 10px rgba(251, 146, 60, 0.5)',
+                    button: 'bg-orange-500 hover:bg-orange-400'
+                };
+            case 'red':
+                return {
+                    badge: 'border-red-500/30 bg-red-500/10 text-red-400',
+                    text: 'text-red-400',
+                    shadow: '0 0 10px rgba(248, 113, 113, 0.5)',
+                    button: 'bg-red-500 hover:bg-red-400'
+                };
+            case 'green':
+                return {
+                    badge: 'border-green-500/30 bg-green-500/10 text-green-400',
+                    text: 'text-green-400',
+                    shadow: '0 0 10px rgba(74, 222, 128, 0.5)',
+                    button: 'bg-green-500 hover:bg-green-400'
+                };
+            case 'yellow':
+                return {
+                    badge: 'border-yellow-500/30 bg-yellow-500/10 text-yellow-400',
+                    text: 'text-yellow-400',
+                    shadow: '0 0 10px rgba(250, 204, 21, 0.5)',
+                    button: 'bg-yellow-500 hover:bg-yellow-400'
+                };
+            default: // Cyan
+                return {
+                    badge: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
+                    text: 'text-cyan-400',
+                    shadow: '0 0 10px rgba(34, 211, 238, 0.5)',
+                    button: 'bg-cyan-500 hover:bg-cyan-400'
+                };
+        }
+    };
+
+    const theme = getColorClasses(currentProject.color);
 
     return (
         <section id="projects" className="py-24 bg-black relative z-10 overflow-hidden">
@@ -249,7 +298,7 @@ const ProjectsSection = () => {
                         <div className={`absolute -inset-4 bg-gradient-to-r ${getShadowColor(currentProject.color)} rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500`}></div>
 
                         <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#111113] aspect-video transform transition-all duration-700 ease-out group-hover:rotate-y-12 group-hover:rotate-x-6 group-hover:scale-[1.02] shadow-2xl preserve-3d">
-    
+
                             <img
                                 src={currentProject.image}
                                 alt={currentProject.title}
@@ -283,7 +332,7 @@ const ProjectsSection = () => {
                     <div className="lg:col-span-5 space-y-8">
 
                         {/* Category Badge */}
-                        <div className={`inline-block px-4 py-2 rounded-full border ${currentProject.color === 'red' ? 'border-red-500/30 bg-red-500/10 text-red-400' : currentProject.color === 'orange' ? 'border-orange-500/30 bg-orange-500/10 text-orange-400' : 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'} text-xs font-bold tracking-wider uppercase`}>
+                        <div className={`inline-block px-4 py-2 rounded-full border ${theme.badge} text-xs font-bold tracking-wider uppercase`}>
                             {currentProject.category}
                         </div>
 
@@ -303,13 +352,11 @@ const ProjectsSection = () => {
                             <div className="grid gap-2">
                                 {currentProject.features.map((feature, idx) => (
                                     <div key={idx} className="flex items-center gap-3 text-white/80">
-                                        <FaCheckCircle className={`shrink-0 ${currentProject.color === 'red' ? 'text-red-400' : currentProject.color === 'orange' ? 'text-orange-400' : 'text-cyan-400'}`} />
+                                        <FaCheckCircle className={`shrink-0 ${theme.text}`} />
                                         <span
                                             className="text-sm font-medium transition-all duration-300"
                                             style={{
-                                                textShadow: currentProject.color === 'red' ? '0 0 10px rgba(248, 113, 113, 0.5)' :
-                                                    currentProject.color === 'orange' ? '0 0 10px rgba(251, 146, 60, 0.5)' :
-                                                        '0 0 10px rgba(34, 211, 238, 0.5)'
+                                                textShadow: theme.shadow
                                             }}
                                         >
                                             {feature}
@@ -319,7 +366,7 @@ const ProjectsSection = () => {
                             </div>
                         </div>
 
-            
+
                         <div className="space-y-3">
                             <h4 className="text-sm font-bold text-white/40 uppercase tracking-widest mb-3">Tech Stack</h4>
                             <div className="flex flex-wrap gap-2">
@@ -333,7 +380,7 @@ const ProjectsSection = () => {
 
 
                         <div className="flex items-center gap-4 pt-4">
-                            <a href={currentProject.liveLink} className={`flex-1 ${currentProject.color === 'red' ? 'bg-red-500 hover:bg-red-400' : currentProject.color === 'orange' ? 'bg-orange-500 hover:bg-orange-400' : 'bg-cyan-500 hover:bg-cyan-400'} text-black font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105`}>
+                            <a href={currentProject.liveLink} className={`flex-1 ${theme.button} text-black font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105`}>
                                 <FaExternalLinkAlt /> Live Preview
                             </a>
                             <a href={currentProject.githubLink} className="flex-1 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105">
@@ -351,7 +398,7 @@ const ProjectsSection = () => {
                                 key={idx}
                                 onClick={() => setCurrentIndex(idx)}
                                 className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex
-                                    ? `w-12 ${getActiveDotColor(currentProject.color)}`
+                                    ? `w-12 ${getActiveDotColor(projects[idx].color)}`
                                     : 'w-2 bg-white/20 hover:bg-white/40'
                                     }`}
                             />
