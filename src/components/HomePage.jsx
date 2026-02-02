@@ -4,6 +4,7 @@ import CursorParticles from './CursorParticles';
 import ProfileSection from './ProfileSection';
 import SkillsPlayground from './SkillsPlayground';
 import ProjectsSection from './ProjectsSection';
+import ContactSection from './ContactSection';
 
 
 const HomePage = () => {
@@ -24,14 +25,14 @@ const HomePage = () => {
                 : fullText.substring(0, text.length + 1)
             );
 
-            setTypingSpeed(isDeleting ? 60 : 200); 
+            setTypingSpeed(isDeleting ? 60 : 200);
 
             if (!isDeleting && text === fullText) {
-                setTimeout(() => setIsDeleting(true), 2000); 
+                setTimeout(() => setIsDeleting(true), 2000);
             } else if (isDeleting && text === '') {
                 setIsDeleting(false);
                 setLoopNum(loopNum + 1);
-                setTypingSpeed(500); 
+                setTypingSpeed(500);
             }
         };
 
@@ -45,7 +46,10 @@ const HomePage = () => {
             <AnimatedBackground />
 
             <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-transparent backdrop-blur-md">
-                <div className="text-xl font-bold tracking-tight">
+                <div
+                    className="text-xl font-bold tracking-tight cursor-pointer hover:scale-105 transition-transform"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
                     <span className="text-cyan-400">Yash</span>{' '}
                     <span className="text-purple-500">Raghubanshi</span>
                 </div>
@@ -57,7 +61,10 @@ const HomePage = () => {
                     <a href="#contact" className="hover:text-white transition-colors">Contact</a>
                 </div>
 
-                <button className="bg-[#1a1a1e] py-2.5 px-6 rounded-2xl flex items-center gap-3 group hover:bg-[#25252b] transition-all">
+                <button
+                    onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                    className="bg-[#1a1a1e] py-2.5 px-6 rounded-2xl flex items-center gap-3 group hover:bg-[#25252b] transition-all"
+                >
                     <div className="w-6 h-6 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 font-bold group-hover:scale-110 transition-transform">
                         <span className="rotate-[-45deg] leading-none">→</span>
                     </div>
@@ -77,7 +84,10 @@ const HomePage = () => {
 
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-16">
-                        <button className="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-cyan-400 transition-all text-sm uppercase tracking-wider shadow-[0_10px_40px_rgba(255,255,255,0.1)]">
+                        <button
+                            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                            className="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-cyan-400 transition-all text-sm uppercase tracking-wider shadow-[0_10px_40px_rgba(255,255,255,0.1)]"
+                        >
                             Contact Me
                         </button>
                         <button className="bg-transparent px-12 py-4 rounded-full font-bold hover:bg-white/5 transition-all text-sm uppercase tracking-wider backdrop-blur-sm ring-1 ring-white/20 hover:ring-white/40">
@@ -94,7 +104,7 @@ const HomePage = () => {
                             <i className="fab fa-linkedin text-2xl"></i>
                         </a>
                         <a href="https://www.instagram.com/whyash7/" className="text-white/40 hover:text-pink-300 transition-all hover:scale-125">
-                        <i className="fab fa-instagram text-2xl"></i>
+                            <i className="fab fa-instagram text-2xl"></i>
                         </a>
                     </div>
                 </div>
@@ -107,9 +117,20 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <ProfileSection />
-            <SkillsPlayground />
-            <ProjectsSection />
+            <section id="about">
+                <ProfileSection />
+            </section>
+
+            <section id="skills">
+                <SkillsPlayground />
+            </section>
+
+            <section id="projects">
+                <ProjectsSection />
+            </section>
+
+            {/* ContactSection already has id="contact" inside it, but wrapping just in case or relying on internal ID */}
+            <ContactSection />
 
         </div>
     );
