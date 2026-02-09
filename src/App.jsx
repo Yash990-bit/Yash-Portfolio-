@@ -14,7 +14,7 @@ function App() {
       {loading ? (
         <TerminalLoader onComplete={handleLoadingComplete} />
       ) : (
-        <div className="animate-in fade-in duration-1000">
+        <div>
           <HomePage />
         </div>
       )}

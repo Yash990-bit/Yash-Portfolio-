@@ -455,7 +455,6 @@ html {
   animation: glow-cycle 3s ease-in-out infinite;
 }
 
-/* Evaporating Particles Effect */
 @keyframes evaporate {
   0% {
     transform: translate(-50%, -50%) rotate(var(--angle)) translateX(70px) scale(1);
@@ -472,15 +471,15 @@ html {
   animation: evaporate 3s ease-out infinite;
 }
 
-/* Ripple Effect - Single Circle Expanding Outward */
+
 @keyframes ripple {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 
   100% {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: scale(1.5);
     opacity: 0;
   }
 }

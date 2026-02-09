@@ -48,7 +48,7 @@ const EducationSection = () => {
     const currentData = activeTab === 'education' ? education : achievements;
 
     return (
-        <section id="education" className="py-20 px-4 relative z-10">
+        <section id="education" className="py-20 px-4 relative z-10 bg-black">
             <div className="max-w-4xl mx-auto">
 
                 {/* Tabs */}

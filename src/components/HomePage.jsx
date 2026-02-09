@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
 import CursorParticles from './CursorParticles';
 import ProfileSection from './ProfileSection';
@@ -74,16 +75,32 @@ const HomePage = () => {
 
             <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 z-10 pt-16">
                 <div className="relative">
-                    <h1 className="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.8] mb-8">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.8] mb-8"
+                    >
                         Yash Raghubanshi
-                    </h1>
-                    <h2 className="text-2xl md:text-[2.5rem] text-white/90 font-medium tracking-tight mt-4 h-[50px]">
+                    </motion.h1>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="text-2xl md:text-[2.5rem] text-white/90 font-medium tracking-tight mt-4 h-[50px]"
+                    >
                         I am a <span className="text-cyan-400">{text}</span>
                         <span className="w-1 h-8 md:h-12 bg-white ml-2 inline-block animate-pulse align-middle" />
-                    </h2>
+                    </motion.h2>
 
 
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="flex flex-col md:flex-row items-center justify-center gap-6 mt-16"
+                    >
                         <button
                             onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
                             className="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-cyan-400 transition-all text-sm uppercase tracking-wider shadow-[0_10px_40px_rgba(255,255,255,0.1)]"
@@ -97,10 +114,15 @@ const HomePage = () => {
                         >
                             My Resume
                         </a>
-                    </div>
+                    </motion.div>
 
 
-                    <div className="flex items-center justify-center gap-12 mt-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="flex items-center justify-center gap-12 mt-16"
+                    >
                         <a href="https://github.com/Yash990-bit" className="text-white/40 hover:text-white transition-all hover:scale-125">
                             <i className="fab fa-github text-2xl"></i>
                         </a>
@@ -110,7 +132,7 @@ const HomePage = () => {
                         <a href="https://www.instagram.com/whyash7/" className="text-white/40 hover:text-pink-300 transition-all hover:scale-125">
                             <i className="fab fa-instagram text-2xl"></i>
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
 
                 <div className="absolute bottom-12 flex flex-col items-center gap-3 opacity-60 group cursor-pointer">

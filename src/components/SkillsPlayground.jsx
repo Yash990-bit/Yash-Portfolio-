@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import Matter from 'matter-js';
 import {
   SiReact,
@@ -30,29 +31,22 @@ const skills = [
   { name: 'Tailwind', color: '#38BDF8', icon: SiTailwindcss },
   { name: 'Node.js', color: '#339933', icon: SiNodedotjs },
   { name: 'Express', color: '#fff', icon: SiExpress },
-
   { name: 'JS', color: '#F7DF1E', icon: SiJavascript },
   { name: 'TS', color: '#3178C6', icon: SiTypescript },
-
   { name: 'HTML5', color: '#E34F26', icon: SiHtml5 },
   { name: 'CSS3', color: '#1572B6', icon: SiCss3 },
-
   { name: 'Python', color: '#3776AB', icon: SiPython },
   { name: 'Jupyter', color: '#F37626', icon: SiJupyter },
   { name: 'Colab', color: '#F9AB00', icon: SiGooglescholar },
   { name: 'Streamlit', color: '#FF4B4B', icon: SiStreamlit },
   { name: 'Kaggle', color: '#20BEFF', icon: SiKaggle },
-
   { name: 'MongoDB', color: '#47A248', icon: SiMongodb },
   { name: 'MySQL', color: '#4479A1', icon: SiMysql },
-
   { name: 'Git', color: '#F05032', icon: SiGit },
   { name: 'GitHub', color: '#fff', icon: SiGithub },
-
   { name: 'Firebase', color: '#FFCA28', icon: SiFirebase },
   { name: 'Vercel', color: '#fff', icon: SiVercel },
   { name: 'Netlify', color: '#00C7B7', icon: SiNetlify },
-
   { name: 'Figma', color: '#F24E1E', icon: SiFigma },
   { name: 'Vite', color: '#646CFF', icon: SiVite }
 ];
@@ -60,16 +54,14 @@ const skills = [
 const SkillsPlayground = () => {
   const sceneRef = useRef(null);
   const engineRef = useRef(null);
-  const bodiesRef = useRef([]); // To store physics bodies
-  const itemsRef = useRef([]); // To store DOM elements
+  const itemsRef = useRef([]);
+  const resizeHandlerRef = useRef(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
+        if (entry.isIntersecting) setInView(true);
       },
       { threshold: 0.1 }
     );
@@ -81,121 +73,150 @@ const SkillsPlayground = () => {
   useEffect(() => {
     if (!inView) return;
 
-    const { Engine, World, Bodies, Mouse, MouseConstraint, Composite, Runner, Events } = Matter;
-
-    // 1. Setup Engine
-    const engine = Engine.create();
-    engineRef.current = engine;
-    const world = engine.world;
-
     const container = sceneRef.current;
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    if (!container) return;
 
-    // 2. Create Boundaries
-    const wallOptions = { isStatic: true, render: { visible: false } };
-    const ground = Bodies.rectangle(width / 2, height + 50, width, 100, wallOptions);
-    const leftWall = Bodies.rectangle(-50, height / 2, 100, height, wallOptions);
-    const rightWall = Bodies.rectangle(width + 50, height / 2, 100, height, wallOptions);
+    const setupPhysics = () => {
+      const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
 
-    Composite.add(world, [ground, leftWall, rightWall]);
+      const width = container.clientWidth;
+      const height = container.clientHeight;
 
-    // 3. Create Bodies for each Skill
-    const newBodies = skills.map(() => {
-      return Bodies.rectangle(
-        Math.random() * (width - 100) + 50, // Random X
-        -Math.random() * 500 - 50,          // Random Y (above screen)
-        120, // Width (Updated sizing)
-        120, // Height
-        {
-          chamfer: { radius: 10 },
-          restitution: 0.6,
-          friction: 0.01,
-          frictionAir: 0.02,
-        }
-      );
-    });
+      if (width === 0 || height === 0) return false;
 
-    bodiesRef.current = newBodies;
-    Composite.add(world, newBodies);
+      // 1. Setup Engine
+      const engine = Engine.create();
+      engineRef.current = engine;
+      const world = engine.world;
+      world.gravity.y = 0.8; // Slowed down from 1.2
 
-    // 4. Mouse Control
-    const mouse = Mouse.create(container);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        stiffness: 0.1,
-        render: { visible: false }
-      }
-    });
-    Composite.add(world, mouseConstraint);
+      // 2. Create Boundaries
+      const wallOptions = { isStatic: true, render: { visible: false } };
+      const ground = Bodies.rectangle(width / 2, height + 50, width, 100, wallOptions);
+      const leftWall = Bodies.rectangle(-50, height / 2, 100, height, wallOptions);
+      const rightWall = Bodies.rectangle(width + 50, height / 2, 100, height, wallOptions);
+      Composite.add(world, [ground, leftWall, rightWall]);
 
-    // Remove mouse wheel capture
-    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
-    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+      // 3. Create Bodies
+      const size = 120; // Increased from 100
+      const bodies = skills.map((_, i) => {
+        const body = Bodies.rectangle(
+          Math.random() * (width - size) + size / 2,
+          -Math.random() * 1500 - 200, // Spawn high up
+          size,
+          size,
+          {
+            chamfer: { radius: 15 },
+            restitution: 0.6,
+            friction: 0.1,
+            frictionAir: 0.03 // Increased from 0.01 for slower/smoother fall
+          }
+        );
 
-    // 5. Sync Loop
-    const runner = Runner.create();
-    Runner.run(runner, engine);
+        // Add subtle initial velocity and spin
+        Matter.Body.setVelocity(body, {
+          x: (Math.random() - 0.5) * 3,
+          y: Math.random() * 3
+        });
+        Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.1);
 
-    let animationFrameId;
+        return body;
+      });
+      Composite.add(world, bodies);
 
-    const updateLoop = () => {
-      if (!itemsRef.current.length) return;
-
-      newBodies.forEach((body, index) => {
-        const domNode = itemsRef.current[index];
-        if (domNode) {
-          const { x, y } = body.position;
-          const angle = body.angle;
-          // Directly updating transform for performance (offset by half width/height)
-          domNode.style.transform = `translate(${x - 60}px, ${y - 60}px) rotate(${angle}rad)`;
+      // 4. Mouse
+      const mouse = Mouse.create(container);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse,
+        constraint: {
+          stiffness: 0.2,
+          damping: 0.1,
+          render: { visible: false }
         }
       });
-      animationFrameId = requestAnimationFrame(updateLoop);
-    };
-    updateLoop();
+      Composite.add(world, mouseConstraint);
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      Runner.stop(runner);
-      Engine.clear(engine);
-      Composite.clear(world);
+      // Prevent scrolling while interacting
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+      // 5. Runner
+      const runner = Runner.create();
+      Runner.run(runner, engine);
+
+      // 6. Sync Loop
+      let animationFrameId;
+      const sync = () => {
+        bodies.forEach((body, i) => {
+          const dom = itemsRef.current[i];
+          if (dom) {
+            const { x, y } = body.position;
+            dom.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px) rotate(${body.angle}rad)`;
+          }
+        });
+        animationFrameId = requestAnimationFrame(sync);
+      };
+      sync();
+
+      // 7. Cleanup & Resize handlers
+      const handleResize = () => {
+        const newW = container.clientWidth;
+        const newH = container.clientHeight;
+        Matter.Body.setPosition(ground, { x: newW / 2, y: newH + 50 });
+        Matter.Body.setPosition(leftWall, { x: -50, y: newH / 2 });
+        Matter.Body.setPosition(rightWall, { x: newW + 50, y: newH / 2 });
+      };
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        cancelAnimationFrame(animationFrameId);
+        Runner.stop(runner);
+        Engine.clear(engine);
+        Composite.clear(world, false);
+      };
     };
+
+    let cleanupFn = setupPhysics();
+    if (!cleanupFn) {
+      const interval = setInterval(() => {
+        cleanupFn = setupPhysics();
+        if (cleanupFn) clearInterval(interval);
+      }, 100);
+      return () => {
+        clearInterval(interval);
+        if (cleanupFn) cleanupFn();
+      };
+    }
+
+    return cleanupFn;
   }, [inView]);
 
   return (
-    <section className="py-20 bg-[#050505] text-white relative overflow-hidden" id="skills">
-      <div className="text-center mb-10">
-        <h2 className="text-4xl md:text-5xl font-bold">
-          Skills <span className="text-cyan-400">Playground</span>
-        </h2>
-        <p className="text-gray-400 mt-4">Drag and throw the blocks!</p>
+    <section id="skills" className="py-24 bg-black text-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 mb-16 text-center">
+        <h2 className="text-sm font-bold tracking-[0.3em] text-cyan-400 uppercase mb-4">Skills</h2>
+        <h3 className="text-4xl md:text-6xl font-bold tracking-tighter">
+          Interactive <span className="text-white/40">Playground</span>
+        </h3>
+        <p className="text-white/40 mt-6 max-w-lg mx-auto uppercase text-[10px] tracking-widest">
+          Drag, throw, and explore technical expertise
+        </p>
       </div>
 
       <div
         ref={sceneRef}
-        className="w-full h-[600px] relative bg-black/50 border-t border-b border-white/10 overflow-hidden cursor-grab active:cursor-grabbing"
+        className="relative w-full h-[600px] bg-black/50 border-y border-white/5 cursor-grab active:cursor-grabbing overflow-hidden"
       >
-        {/* Render DOM Elements synced to Physics */}
-        {skills.map((skill, index) => (
+        {skills.map((skill, i) => (
           <div
-            key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
-            className="absolute top-0 left-0 w-[120px] h-[120px] rounded-2xl flex flex-col items-center justify-center gap-3 shadow-lg select-none will-change-transform border border-white/10"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.05)', // Dark Glass
-              backdropFilter: 'blur(5px)',
-              boxShadow: `0 0 20px -5px ${skill.color}40`, // Colored Glow
-              zIndex: 10
-            }}
+            key={i}
+            ref={el => itemsRef.current[i] = el}
+            className="absolute top-0 left-0 w-[120px] h-[120px] flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 shadow-xl pointer-events-none select-none transition-shadow duration-300"
+            style={{ boxShadow: `0 0 20px -5px ${skill.color}30` }}
           >
-            {/* Colored Icon - The "Logo" */}
-            <skill.icon className="text-4xl" style={{ color: skill.color }} />
-
-            <span className="text-xs font-bold uppercase tracking-wide text-white/80">
-              {skill.name}
-            </span>
+            <skill.icon className="text-4xl mb-3" style={{ color: skill.color }} />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-white/70">{skill.name}</span>
           </div>
         ))}
       </div>

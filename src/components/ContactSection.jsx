@@ -1,40 +1,9 @@
-import React, { useState, Suspense, useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Float } from '@react-three/drei';
+import React, { useState } from 'react';
+import AnimatedBackground from './AnimatedBackground';
+
 import { motion } from 'framer-motion';
 
-// Abstract 3D Sliced Shape to match reference - High Resolution
-const AbstractShape = () => {
-    const meshRef = useRef();
 
-    useFrame((state) => {
-        if (meshRef.current) {
-            // Slow elegant rotation
-            meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.15;
-            meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.1;
-        }
-    });
-
-    return (
-        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-            {/* Smoother, large Torus on the right */}
-            <mesh ref={meshRef} position={[3.5, 0, -2]} rotation={[0, 0, Math.PI / 3]} scale={2.5}>
-                {/* High Poly Geometry for smoothness */}
-                <torusGeometry args={[1.8, 0.5, 64, 200, Math.PI * 1.2]} />
-                <meshPhysicalMaterial
-                    color="#ff4500" // Red/Orange
-                    emissive="#330000"
-                    emissiveIntensity={0.2}
-                    roughness={0.1}
-                    metalness={0.8}
-                    transmission={0.1}
-                    thickness={2}
-                    clearcoat={1}
-                />
-            </mesh>
-        </Float>
-    );
-};
 
 const ContactSection = () => {
     const [formStatus, setFormStatus] = useState('idle');
@@ -52,19 +21,14 @@ const ContactSection = () => {
     };
 
     return (
-        <section id="contact" className="min-h-screen w-full bg-black relative flex items-center justify-center overflow-hidden py-20">
+        <section id="contact" className="min-h-screen w-full relative flex items-center justify-center overflow-hidden py-20 bg-black/40 backdrop-blur-3xl">
 
-            {/* 3D BACKGROUND LAYER - Pointer events none prevents blocking inputs */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <Canvas camera={{ position: [0, 0, 6], fov: 45 }} gl={{ antialias: true, alpha: true }}>
-                    <ambientLight intensity={0.5} />
-                    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} color="#ffffff" />
-                    <pointLight position={[-10, -10, -10]} intensity={1} color="#ff4500" />
-                    <Suspense fallback={null}>
-                        <Environment preset="city" />
-                        <AbstractShape />
-                    </Suspense>
-                </Canvas>
+            {/* Background Image from User */}
+            {/* Background Layer - Matches site design */}
+            <div className="absolute inset-0 z-0">
+                <AnimatedBackground />
+                {/* Additional overlay for contact section readability */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
             </div>
 
             {/* CONTENT LAYER - Z-10 to sit above canvas */}
@@ -85,17 +49,27 @@ const ContactSection = () => {
 
                 {/* Glass Form */}
                 <motion.form
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
+                    variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: {
+                                staggerChildren: 0.1,
+                                delayChildren: 0.2
+                            }
+                        }
+                    }}
                     onSubmit={handleSubmit}
-                    className="space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl relative"
+                    className="space-y-6 bg-[#111113] p-8 rounded-3xl border border-white/5 shadow-2xl relative"
                 >
                     {/* Top Row: 3 Columns */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {/* Dropdown */}
-                        <div className="relative group">
+                        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="relative group">
                             <select className="w-full bg-[#111] border border-white/10 rounded-xl px-4 py-4 text-gray-400 focus:text-white focus:border-white/40 focus:outline-none appearance-none cursor-pointer transition-colors">
                                 <option>Become a partner</option>
                                 <option>General Inquiry</option>
@@ -106,10 +80,11 @@ const ContactSection = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Name Input */}
-                        <input
+                        <motion.input
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                             type="text"
                             placeholder="Your name"
                             required
@@ -117,7 +92,8 @@ const ContactSection = () => {
                         />
 
                         {/* Email Input */}
-                        <input
+                        <motion.input
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                             type="email"
                             placeholder="Your email"
                             required
@@ -126,15 +102,16 @@ const ContactSection = () => {
                     </div>
 
                     {/* Message Area */}
-                    <textarea
+                    <motion.textarea
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                         rows="6"
                         placeholder="Your message"
                         required
                         className="w-full bg-[#111] border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-gray-500 focus:border-white/40 focus:outline-none transition-colors resize-none"
-                    ></textarea>
+                    ></motion.textarea>
 
                     {/* Privacy Checkbox */}
-                    <div className="flex items-center gap-3">
+                    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3">
                         <input
                             type="checkbox"
                             id="privacy"
@@ -144,16 +121,17 @@ const ContactSection = () => {
                         <label htmlFor="privacy" className="text-gray-400 text-sm cursor-pointer select-none hover:text-white transition-colors">
                             I agree to the Privacy Policy
                         </label>
-                    </div>
+                    </motion.div>
 
                     {/* Submit Button */}
-                    <button
+                    <motion.button
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                         type="submit"
                         disabled={formStatus === 'sending'}
                         className="w-full bg-white text-black font-bold py-4 rounded-xl transition-all hover:bg-gray-200 disabled:opacity-50 disabled:cursor-wait"
                     >
                         {formStatus === 'sending' ? 'Sending...' : 'Submit'}
-                    </button>
+                    </motion.button>
 
                 </motion.form>
 

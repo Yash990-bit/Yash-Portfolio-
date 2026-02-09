@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
     {
@@ -90,7 +91,7 @@ const projects = [
 
     {
         id: 3,
-        title: "Expense Tracker – Full Stack Application",
+        title: "Expense Tracker",
         category: "Finance / Productivity",
         description: "A full-stack Expense Tracker web application that helps users manage income, expenses, and balance efficiently with authentication, analytics, and export features.",
         image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1964&auto=format&fit=crop",
@@ -134,7 +135,7 @@ const projects = [
 
     {
         id: 4,
-        title: "EstateEdge ",
+        title: "EstateEdge",
         category: "Auction Platform",
         description: "EstateEdge is a modern real estate bidding platform that enables users to browse properties, participate in online auctions, and manage bids in a fast and responsive environment.",
         image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1974&auto=format&fit=crop",
@@ -193,9 +194,6 @@ const projects = [
         githubLink: "https://github.com/Yash990-bit/SkillSync",
         color: "red"
     }
-
-
-
 ];
 
 const ProjectsSection = () => {
@@ -291,106 +289,150 @@ const ProjectsSection = () => {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-12 items-center">
+                <div className="relative min-h-[600px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentIndex}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="grid lg:grid-cols-12 gap-12 items-center"
+                        >
 
-                    <div className="lg:col-span-7 relative group perspective-1000">
-
-                        <div className={`absolute -inset-4 bg-gradient-to-r ${getShadowColor(currentProject.color)} rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500`}></div>
-
-                        <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#111113] aspect-video transform transition-all duration-700 ease-out group-hover:rotate-y-12 group-hover:rotate-x-6 group-hover:scale-[1.02] shadow-2xl preserve-3d">
-
-                            <img
-                                src={currentProject.image}
-                                alt={currentProject.title}
-                                className="w-full h-full object-cover object-center"
-                            />
-
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-                            <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs font-mono text-white/80">
-                                v1.0.0
-                            </div>
-
-
-                            <button
-                                onClick={prevProject}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/70 transition-all z-20 group-hover:opacity-100 opacity-0 md:opacity-100"
+                            {/* LEFT: Image Card */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -50, scale: 0.9 }}
+                                animate={{ opacity: 1, x: 0, scale: 1 }}
+                                exit={{ opacity: 0, x: -50, scale: 0.9 }}
+                                transition={{ duration: 0.6, ease: "backOut" }}
+                                className="lg:col-span-7 relative group perspective-1000"
                             >
-                                <FaChevronLeft />
-                            </button>
 
-                            <button
-                                onClick={nextProject}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/70 transition-all z-20 group-hover:opacity-100 opacity-0 md:opacity-100"
-                            >
-                                <FaChevronRight />
-                            </button>
-                        </div>
-                    </div>
+                                <div className={`absolute -inset-4 bg-gradient-to-r ${getShadowColor(currentProject.color)} rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500`}></div>
 
-                    {/* RIGHT: Project Details (5 cols) */}
-                    <div className="lg:col-span-5 space-y-8">
+                                <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#111113] aspect-video transform transition-all duration-700 ease-out group-hover:rotate-y-12 group-hover:rotate-x-6 group-hover:scale-[1.02] shadow-2xl preserve-3d">
 
-                        {/* Category Badge */}
-                        <div className={`inline-block px-4 py-2 rounded-full border ${theme.badge} text-xs font-bold tracking-wider uppercase`}>
-                            {currentProject.category}
-                        </div>
+                                    <img
+                                        src={currentProject.image}
+                                        alt={currentProject.title}
+                                        className="w-full h-full object-cover object-center"
+                                    />
 
-                        {/* Title & Description */}
-                        <div>
-                            <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
-                                {currentProject.title}
-                            </h3>
-                            <p className="text-white/60 leading-relaxed text-lg">
-                                {currentProject.description}
-                            </p>
-                        </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-                        {/* Key Features */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-bold text-white/40 uppercase tracking-widest mb-3">Key Features</h4>
-                            <div className="grid gap-2">
-                                {currentProject.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-center gap-3 text-white/80">
-                                        <FaCheckCircle className={`shrink-0 ${theme.text}`} />
-                                        <span
-                                            className="text-sm font-medium transition-all duration-300"
-                                            style={{
-                                                textShadow: theme.shadow
-                                            }}
-                                        >
-                                            {feature}
-                                        </span>
+                                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs font-mono text-white/80">
+                                        v1.0.0
                                     </div>
-                                ))}
+
+
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); prevProject(); }}
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/70 transition-all z-20 group-hover:opacity-100 opacity-0 md:opacity-100"
+                                    >
+                                        <FaChevronLeft />
+                                    </button>
+
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); nextProject(); }}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black/70 transition-all z-20 group-hover:opacity-100 opacity-0 md:opacity-100"
+                                    >
+                                        <FaChevronRight />
+                                    </button>
+                                </div>
+                            </motion.div>
+
+                            {/* RIGHT: Project Details (5 cols) - Staggered Animation */}
+                            <div className="lg:col-span-5 space-y-8">
+                                <motion.div
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={{
+                                        hidden: { opacity: 0 },
+                                        visible: {
+                                            opacity: 1,
+                                            transition: {
+                                                staggerChildren: 0.1,
+                                                delayChildren: 0.2
+                                            }
+                                        }
+                                    }}
+                                >
+
+                                    {/* Category Badge */}
+                                    <motion.div
+                                        variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+                                        className={`inline-block px-4 py-2 rounded-full border ${theme.badge} text-xs font-bold tracking-wider uppercase mb-4`}
+                                    >
+                                        {currentProject.category}
+                                    </motion.div>
+
+                                    {/* Title & Description */}
+                                    <motion.div variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}>
+                                        <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
+                                            {currentProject.title}
+                                        </h3>
+                                        <p className="text-white/60 leading-relaxed text-lg">
+                                            {currentProject.description}
+                                        </p>
+                                    </motion.div>
+
+                                    {/* Key Features */}
+                                    <motion.div variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }} className="space-y-3 mt-8">
+                                        <h4 className="text-sm font-bold text-white/40 uppercase tracking-widest mb-3">Key Features</h4>
+                                        <div className="grid gap-2">
+                                            {currentProject.features.map((feature, idx) => (
+                                                <div key={idx} className="flex items-center gap-3 text-white/80">
+                                                    <FaCheckCircle className={`shrink-0 ${theme.text}`} />
+                                                    <span
+                                                        className="text-sm font-medium transition-all duration-300"
+                                                        style={{
+                                                            textShadow: theme.shadow
+                                                        }}
+                                                    >
+                                                        {feature}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+
+
+                                    <motion.div variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }} className="space-y-3 mt-8">
+                                        <h4 className="text-sm font-bold text-white/40 uppercase tracking-widest mb-3">Tech Stack</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {currentProject.techStack.map((tech, idx) => (
+                                                <span key={idx} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 hover:border-white/30 transition-colors cursor-default">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+
+
+                                    <motion.div variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }} className="flex items-center gap-4 pt-8">
+                                        <a href={currentProject.liveLink} className={`flex-1 ${theme.button} text-black font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105`}>
+                                            <FaExternalLinkAlt /> Live Preview
+                                        </a>
+                                        <a href={currentProject.githubLink} className="flex-1 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105">
+                                            <FaGithub size={20} /> GitHub
+                                        </a>
+                                    </motion.div>
+
+                                </motion.div>
                             </div>
-                        </div>
-
-
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-bold text-white/40 uppercase tracking-widest mb-3">Tech Stack</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {currentProject.techStack.map((tech, idx) => (
-                                    <span key={idx} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 hover:border-white/30 transition-colors cursor-default">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-
-                        <div className="flex items-center gap-4 pt-4">
-                            <a href={currentProject.liveLink} className={`flex-1 ${theme.button} text-black font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105`}>
-                                <FaExternalLinkAlt /> Live Preview
-                            </a>
-                            <a href={currentProject.githubLink} className="flex-1 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:scale-105">
-                                <FaGithub size={20} /> GitHub
-                            </a>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
-                <div className="flex flex-col items-center justify-center mt-20 gap-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                    className="flex flex-col items-center justify-center mt-20 gap-4"
+                >
 
                     <div className="flex gap-2">
                         {projects.map((_, idx) => (
@@ -409,7 +451,7 @@ const ProjectsSection = () => {
                     <div className="font-mono text-white/40 text-sm tracking-widest">
                         0{currentIndex + 1} <span className="text-white/20">/</span> 0{projects.length}
                     </div>
-                </div>
+                </motion.div>
 
             </div>
         </section>

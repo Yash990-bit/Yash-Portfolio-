@@ -63,15 +63,15 @@ const AnimatedBackground = () => {
     };
 
     return (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#0a0b10]"> {/* Lightened from #050608 to #0a0b10 for visibility */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-black">
 
             {/* Moving Auras (Blue and Red, subtle/slow) */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 blur-[150px] rounded-full animate-aura-1 mix-blend-screen pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/20 blur-[180px] rounded-full animate-aura-2 mix-blend-screen pointer-events-none"></div>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/40 blur-[150px] rounded-full animate-aura-1 mix-blend-screen pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/40 blur-[180px] rounded-full animate-aura-2 mix-blend-screen pointer-events-none"></div>
 
             {/* Grid Pattern Restored - Increased Visibility */}
             <div
-                className="absolute inset-0 opacity-[0.3]"
+                className="absolute inset-0 opacity-[0.4]"
                 style={{
                     backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
                     backgroundSize: '80px 80px'
@@ -91,7 +91,7 @@ const AnimatedBackground = () => {
                     animationDuration: '45s'
                 }}
             >
-                <div className="opacity-40 cube-container">{renderShape('cube')}</div>
+                <div className="opacity-70 cube-container">{renderShape('cube')}</div>
             </div>
 
             {/* 2. Cuboid - Bottom Center */}
@@ -106,7 +106,7 @@ const AnimatedBackground = () => {
                     animationDelay: '-5s'
                 }}
             >
-                <div className="opacity-50 cuboid-container">{renderShape('cuboid')}</div>
+                <div className="opacity-80 cuboid-container">{renderShape('cuboid')}</div>
             </div>
 
             {/* 3. Pyramid - Bottom Right */}
@@ -121,7 +121,7 @@ const AnimatedBackground = () => {
                     animationDelay: '-10s'
                 }}
             >
-                <div className="opacity-50 pyramid-container">{renderShape('pyramid')}</div>
+                <div className="opacity-80 pyramid-container">{renderShape('pyramid')}</div>
             </div>
 
             {/* 4. Octahedron - Bottom Left */}
@@ -136,11 +136,14 @@ const AnimatedBackground = () => {
                     animationDelay: '-25s'
                 }}
             >
-                <div className="opacity-40 octahedron-container">{renderShape('octahedron')}</div>
+                <div className="opacity-70 octahedron-container">{renderShape('octahedron')}</div>
             </div>
 
             {/* Surface Vignette */}
-            <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#0a0b10]/90" />
+            <div
+                className="absolute inset-0"
+                style={{ background: 'radial-gradient(circle at center, transparent, rgba(10, 11, 16, 0.9))' }}
+            />
         </div>
     );
 };
