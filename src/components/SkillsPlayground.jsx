@@ -212,8 +212,8 @@ const SkillsPlayground = () => {
           <div
             key={i}
             ref={el => itemsRef.current[i] = el}
-            className="absolute top-0 left-0 w-[120px] h-[120px] flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 shadow-xl pointer-events-none select-none transition-shadow duration-300"
-            style={{ boxShadow: `0 0 20px -5px ${skill.color}30` }}
+            className="absolute top-0 left-0 w-[120px] h-[120px] flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm border border-white/10 pointer-events-none select-none transition-shadow duration-300"
+            style={{ boxShadow: `0 4px 12px ${skill.color}20` }}
           >
             <skill.icon className="text-4xl mb-3" style={{ color: skill.color }} />
             <span className="text-[11px] font-bold uppercase tracking-wider text-white/70">{skill.name}</span>

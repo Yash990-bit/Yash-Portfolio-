@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
-import CursorParticles from './CursorParticles';
+import CustomCursor from './CustomCursor';
 import ProfileSection from './ProfileSection';
 import SkillsPlayground from './SkillsPlayground';
 import ProjectsSection from './ProjectsSection';
@@ -43,7 +43,7 @@ const HomePage = () => {
 
     return (
         <div className="min-h-screen bg-transparent text-white selection:bg-cyan-500/30 selection:text-white relative font-sans overflow-x-hidden">
-            <CursorParticles />
+            <CustomCursor />
             <AnimatedBackground />
 
             <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-transparent backdrop-blur-md">

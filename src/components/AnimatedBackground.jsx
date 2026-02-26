@@ -66,8 +66,8 @@ const AnimatedBackground = () => {
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-black">
 
             {/* Moving Auras (Blue and Red, subtle/slow) */}
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/40 blur-[150px] rounded-full animate-aura-1 mix-blend-screen pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/40 blur-[180px] rounded-full animate-aura-2 mix-blend-screen pointer-events-none"></div>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[100px] rounded-full animate-aura-1 mix-blend-screen pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/30 blur-[120px] rounded-full animate-aura-2 mix-blend-screen pointer-events-none"></div>
 
             {/* Grid Pattern Restored - Increased Visibility */}
             <div
