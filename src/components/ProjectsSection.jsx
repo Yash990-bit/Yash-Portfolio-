@@ -4,6 +4,51 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
     {
+        id: "chunkscope",
+        title: "ChunkScope",
+        category: "Generative AI / Web Application",
+        description: "A RAG-based system designed to optimize chunking and retrieval strategies including Vector, BM25, and Hybrid approaches, significantly improving LLM performance, accuracy, and reducing hallucinations.",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+        features: [
+            "RAG-based system for optimizing retrieval strategies",
+            "Real-time visualization of chunks and outputs",
+            "Evaluation metrics to reduce LLM hallucinations",
+            "Vector, BM25, and Hybrid retrieval methods"
+        ],
+        techStack: [
+            "Next.js",
+            "React",
+            "FastAPI",
+            "OpenAI API",
+            "Python"
+        ],
+        liveLink: "#",
+        githubLink: "https://github.com/Yash990-bit/ChunkScope",
+        color: "purple"
+    },
+    {
+        id: "revora",
+        title: "Revora — Agentic AI Sales Automation",
+        category: "AI / Backend Automation",
+        description: "An agentic AI-powered sales automation platform that streamlines lead generation and outreach. Features a robust backend system integrated with APIs like Hunter for scalable sales workflows and secure campaign management.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        features: [
+            "Automated lead generation and outreach",
+            "Integration with external APIs like Hunter",
+            "Secure campaign management",
+            "Gmail automation for scalable workflows"
+        ],
+        techStack: [
+            "FastAPI",
+            "Python",
+            "SQLAlchemy",
+            "JWT Authentication"
+        ],
+        liveLink: "#",
+        githubLink: "https://github.com/SatyamKumarCS/Revora",
+        color: "cyan"
+    },
+    {
         id: 1,
         title: "AI Multi-Disease Detection",
         category: "Machine Learning / Web Application",

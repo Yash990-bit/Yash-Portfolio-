@@ -63,7 +63,10 @@ const ProfileSection = () => {
 
     const achievements = [
         { years: '2025', title: 'Open Source Contributor', institution: 'Hactober Fest' },
-    ]
+        { years: '2026', title: 'Silver Medal in Cricket', institution: 'DTU Sports Fest' },
+        { years: '2025', title: 'Team Member in Cricket', institution: 'BOSM Sports Fest, BITS Pilani' },
+        { years: '2024', title: 'Organizing Committee', institution: 'Go for Gold & DAMRU Fest' }
+    ];
 
     const currentData = activeTab === 'education' ? education : achievements;
 
