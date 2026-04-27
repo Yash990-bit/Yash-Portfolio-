@@ -18,11 +18,19 @@ const projects = [
         techStack: [
             "Next.js",
             "React",
+            "TypeScript",
+            "Recharts",
+            "Framer Motion",
+            "Pydantic",
+            "Uvicorn",
+            "OpenAI GPT-4o",
+            "BM25 Algorithm",
+            "Vector Embeddings",
             "FastAPI",
-            "OpenAI API",
+            "Groq-API",
             "Python"
         ],
-        liveLink: "#",
+        liveLink: "https://chunk-scope.vercel.app/",
         githubLink: "https://github.com/Yash990-bit/ChunkScope",
         color: "purple"
     },
@@ -39,12 +47,19 @@ const projects = [
             "Gmail automation for scalable workflows"
         ],
         techStack: [
-            "FastAPI",
+            "FastAPI(Python)",
+            "Next.js (React + TypeScript)",
+            "PostgreSQL",
+            "Alembic",
+            "JWT Auth",
+            "Gmail API (OAuth2)",
+            "Turborepo + Bun",
             "Python",
             "SQLAlchemy",
-            "JWT Authentication"
+            "Apollo • LinkedIn • Hunter API",
+            "REST APIs + Async backend"
         ],
-        liveLink: "#",
+        liveLink: "https://revora-frontend.onrender.com/",
         githubLink: "https://github.com/SatyamKumarCS/Revora",
         color: "cyan"
     },
