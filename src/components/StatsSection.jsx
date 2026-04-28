@@ -4,26 +4,28 @@ import githubLogo from '../assets/github_logo.svg';
 
 const StatsSection = () => {
     const leetCodeStats = {
-        rank: 840369,
+        rank: 841127,
         globalRank: 342845,
         badges: 1,
         reputation: 277,
-        easy: { solved: 112, total: 1000, percent: 91 },
-        medium: { solved: 62, total: 2000, percent: 77 },
+        easy: { solved: 112, total: 924, percent: 91 },
+        medium: { solved: 62, total: 2001, percent: 77 },
         hard: { solved: 1, total: 905, percent: 0 },
     };
 
     const githubStats = {
-        grade: 'B+',
-        stars: 18,
-        commits: 332,
-        prs: 22,
-        issues: 45,
-        contributions: 22,
+        grade: 'A+',
+        stars: 0,
+        commits: 168,
+        prs: 6,
+        issues: 14,
+        contributions: 16,
         languages: [
-            { name: 'JavaScript', percent: 64.3, color: '#3572A5' },
-            { name: 'HTML', percent: 11.72, color: '#E34C26' },
-            { name: 'CSS', percent: 23.93, color: '#F1E05A' },
+            { name: 'Jupyter Notebook', percent: 93.33, color: '#DA5B0B' },
+            { name: 'JavaScript', percent: 3.24, color: '#F1E05A' },
+            { name: 'Python', percent: 1.84, color: '#3572A5' },
+            { name: 'CSS', percent: 1.22, color: '#563D7C' },
+            { name: 'TypeScript', percent: 0.36, color: '#3178C6' },
         ],
     };
 
@@ -42,7 +44,7 @@ const StatsSection = () => {
                     {/* LeetCode */}
                     <div className="glass rounded-2xl p-6 md:p-8">
                         <a
-                            href="https://leetcode.com/u/yashraghubanshi"
+                            href="https://leetcode.com/u/yash_ragh_08/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity w-fit"
@@ -67,7 +69,7 @@ const StatsSection = () => {
                     <div className="glass rounded-2xl p-6 md:p-8">
                         <div className="flex items-center justify-between mb-6">
                             <a
-                                href="https://github.com/yashraghubanshi"
+                                href="https://github.com/Yash990-bit"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 hover:opacity-80 transition-opacity"

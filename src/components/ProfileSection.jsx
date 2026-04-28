@@ -42,16 +42,18 @@ const ProfileSection = () => {
     };
 
     const githubStats = {
-        grade: 'C-',
+        grade: 'A+',
         stars: 0,
-        commits: 109,
-        issues: 13,
-        prs: 2,
-        contributions: 160,
+        commits: 168,
+        issues: 14,
+        prs: 6,
+        contributions: 16,
         languages: [
-            { name: 'JavaScript', percent: 64.35, color: '#F1E05A' },
-            { name: 'HTML', percent: 11.72, color: '#E34C26' },
-            { name: 'CSS', percent: 23.93, color: '#DA5B0B' },
+            { name: 'Jupyter Notebook', percent: 93.33, color: '#DA5B0B' },
+            { name: 'JavaScript', percent: 3.24, color: '#F1E05A' },
+            { name: 'Python', percent: 1.84, color: '#3572A5' },
+            { name: 'CSS', percent: 1.22, color: '#563D7C' },
+            { name: 'TypeScript', percent: 0.36, color: '#3178C6' },
         ],
     };
 
