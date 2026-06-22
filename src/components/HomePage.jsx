@@ -14,7 +14,7 @@ const HomePage = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [typingSpeed, setTypingSpeed] = useState(150);
 
-    const roles = ["AI/ML Engineer", "Machine Learning Engineer", "Full Stack Developer"];
+    const roles = ["AI/ML Engineer", "Data Engineer", "Full Stack Developer"];
 
     useEffect(() => {
         const handleTyping = () => {
