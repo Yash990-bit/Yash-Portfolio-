@@ -64,9 +64,9 @@ const ProfileSection = () => {
     ];
 
     const achievements = [
+        { years: '2026', title: 'WorldQuant Research Qualified Stage 1', institution: 'WorldQuant BRAIN' },
+        { years: '2026', title: 'Flipkart GRID Hackathon 2.0', institution: 'Flipkart' },
         { years: '2025', title: 'Open Source Contributor', institution: 'Hactober Fest' },
-        { years: '2026', title: 'Silver Medal in Cricket', institution: 'DTU Sports Fest' },
-        { years: '2025', title: 'Team Member in Cricket', institution: 'BOSM Sports Fest, BITS Pilani' },
         { years: '2024', title: 'Organizing Committee', institution: 'Go for Gold & DAMRU Fest' }
     ];
 
